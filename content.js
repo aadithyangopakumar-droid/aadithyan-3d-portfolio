@@ -73,30 +73,49 @@ window.PORTFOLIO_DATA = {
       ]
     },
 
+  {
+  "image": "./assets/work/unity-game-1.jpg",
+  "imageAlt": "Unity 2D game created by Aadithyan Gopakumar",
+  "imageFit": "contain",
+
+  "images": [
     {
-      "image": "",
-      "imageAlt": "",
-      "imageFit": "contain",
-      "images": [],
-      "videoFile": "",
-      "url": "",
-      "videoUrl": "",
-      "demoUrl": "",
-      "sourceUrl": "",
-      "driveUrl": "",
-      "id": "2d-game-prototype",
-      "title": "2D Game Prototype",
-      "collection": "games",
-      "category": "2D Games",
-      "role": "Course Project",
-      "tools": "Unity · C#",
-      "description": "A basic 2D game developed as part of a structured Unity course.",
-      "details": [
-        "Built a basic 2D game as part of a structured development course.",
-        "Implemented basic gameplay elements and mechanics.",
-        "Gained practical experience with Unity and C#."
-      ]
+      "src": "./assets/work/unity-game-2.jpg",
+      "alt": "Gameplay screenshot from the Unity 2D game"
     },
+    {
+      "src": "./assets/work/unity-game-3.jpg",
+      "alt": "Another level from the Unity 2D game"
+    },
+    {
+      "src": "./assets/work/unity-game-4.jpg",
+      "alt": "Additional gameplay screenshot"
+    }
+  ],
+
+  "videoFile": "",
+  "url": "",
+  "videoUrl": "",
+  "demoUrl": "",
+  "sourceUrl": "",
+  "driveUrl": "",
+
+  "id": "unity-2d-game",
+  "title": "My 2D Unity Game",
+  "collection": "games",
+  "category": "2D Games",
+  "role": "Game Developer",
+  "tools": "Unity · C#",
+
+  "description": "A 2D game developed using Unity and C#.",
+
+  "details": [
+    "Created the game environment and gameplay mechanics.",
+    "Implemented player movement and controls using C#.",
+    "Added scoring, collisions and game progression.",
+    "Designed and tested the game levels."
+  ]
+}
 
     {
       "image": "./assets/maya-project-1.jpg.jpeg",
