@@ -1,4 +1,5 @@
 window.PORTFOLIO_DATA = {
+window.PORTFOLIO_DATA = {
   "email": "aadithyangopakumar@gmail.com",
   "phone": "+918590289500",
   "phoneDisplay": "+91 85902 89500",
@@ -73,49 +74,42 @@ window.PORTFOLIO_DATA = {
       ]
     },
 
-  {
-  "image": "./assets/work/unity-game-1.jpg",
-  "imageAlt": "Unity 2D game created by Aadithyan Gopakumar",
-  "imageFit": "contain",
-
-  "images": [
     {
-      "src": "./assets/work/unity-game-2.jpg",
-      "alt": "Gameplay screenshot from the Unity 2D game"
+      "image": "./assets/work/unity-game-1.jpg.png",
+      "imageAlt": "Gameplay from a 2D Unity game created by Aadithyan Gopakumar",
+      "imageFit": "contain",
+
+      "images": [
+        {
+          "src": "./assets/work/unity-game-2.jpg.png",
+          "alt": "Second gameplay view from the 2D Unity game"
+        },
+        {
+          "src": "./assets/work/unity-game-3.jpg.png",
+          "alt": "Third gameplay view from the 2D Unity game"
+        }
+      ],
+
+      "videoFile": "",
+      "url": "",
+      "videoUrl": "",
+      "demoUrl": "",
+      "sourceUrl": "",
+      "driveUrl": "",
+      "id": "unity-2d-game",
+      "title": "2D Unity Game",
+      "collection": "games",
+      "category": "2D Games",
+      "role": "Game Developer",
+      "tools": "Unity · C#",
+      "description": "A 2D game developed in Unity using C#, with player controls and core gameplay mechanics.",
+      "details": [
+        "Created the game environment and gameplay mechanics.",
+        "Implemented player controls using C#.",
+        "Worked with collisions, scoring and game progression.",
+        "Tested and refined the gameplay in Unity."
+      ]
     },
-    {
-      "src": "./assets/work/unity-game-3.jpg",
-      "alt": "Another level from the Unity 2D game"
-    },
-    {
-      "src": "./assets/work/unity-game-4.jpg",
-      "alt": "Additional gameplay screenshot"
-    }
-  ],
-
-  "videoFile": "",
-  "url": "",
-  "videoUrl": "",
-  "demoUrl": "",
-  "sourceUrl": "",
-  "driveUrl": "",
-
-  "id": "unity-2d-game",
-  "title": "My 2D Unity Game",
-  "collection": "games",
-  "category": "2D Games",
-  "role": "Game Developer",
-  "tools": "Unity · C#",
-
-  "description": "A 2D game developed using Unity and C#.",
-
-  "details": [
-    "Created the game environment and gameplay mechanics.",
-    "Implemented player movement and controls using C#.",
-    "Added scoring, collisions and game progression.",
-    "Designed and tested the game levels."
-  ]
-}
 
     {
       "image": "./assets/maya-project-1.jpg.jpeg",
