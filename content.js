@@ -1,5 +1,4 @@
 window.PORTFOLIO_DATA = {
-window.PORTFOLIO_DATA = {
   "email": "aadithyangopakumar@gmail.com",
   "phone": "+918590289500",
   "phoneDisplay": "+91 85902 89500",
