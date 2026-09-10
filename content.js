@@ -114,23 +114,23 @@ window.PORTFOLIO_DATA = {
         "Created the models in Autodesk Maya.",
         "Worked on modelling, materials and presentation."
       ],
-      "image": "./assets/work/maya-project-1.jpg",
+      "image": "./assets/maya-project-1.jpg.jpeg",
       "imageAlt": "Maya 3D project created by Aadithyan Gopakumar",
       "imageFit": "contain",
-      "images": [
-        {
-          "src": "./assets/work/maya-project-2.jpg",
-          "alt": "Second view of the Maya project"
-        },
-        {
-          "src": "./assets/work/maya-project-3.jpg",
-          "alt": "Third view of the Maya project"
-        },
-        {
-          "src": "./assets/work/maya-project-4.jpg",
-          "alt": "Fourth view of the Maya project"
-        }
-      ],
+    "images": [
+   {
+      "src": "./assets/maya-project-2.jpg.jpeg",
+      "alt": "Second view of the Maya project"
+  },
+  {
+     "src": "./assets/maya-project-3.jpg.jpeg",
+     "alt": "Third view of the Maya project"
+  },
+  {
+     "src": "./assets/maya-project-4.jpg.jpeg",
+     "alt": "Fourth view of the Maya project"
+  }
+],
       "videoFile": "",
       "url": "",
       "videoUrl": "",
