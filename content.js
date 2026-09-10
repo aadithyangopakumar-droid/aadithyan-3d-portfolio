@@ -1,14 +1,10 @@
-/* EDIT YOUR WORK AND LINKS HERE.
-   Optional media and links can stay empty; they are hidden automatically.
-   Collections: posters, videos, blender, maya, games.
-   See README.txt for image, video and gallery examples.
-*/
 window.PORTFOLIO_DATA = {
   "email": "aadithyangopakumar@gmail.com",
   "phone": "+918590289500",
   "phoneDisplay": "+91 85902 89500",
   "github": "https://github.com/aadithyangopakumar-droid",
   "resume": "./assets/Aadithyan_Gopakumar_Resume.pdf",
+
   "socials": [
     {
       "label": "Instagram",
@@ -27,6 +23,7 @@ window.PORTFOLIO_DATA = {
       "url": "https://drive.google.com/drive/folders/1woQAnirxjFxdm8iiiZuDEkIQVixj_ak1?usp=sharing"
     }
   ],
+
   "collections": [
     {
       "id": "posters",
@@ -49,10 +46,11 @@ window.PORTFOLIO_DATA = {
       "label": "2D Games"
     }
   ],
+
   "projects": [
     {
       "image": "./assets/work/kappiri-2025.jpg",
-      "imageAlt": "Kappiri film poster: a dark forest and candlelit shrine, with the film title and credits.",
+      "imageAlt": "Kappiri film poster",
       "imageFit": "contain",
       "images": [],
       "videoFile": "",
@@ -74,6 +72,7 @@ window.PORTFOLIO_DATA = {
         "Year: 2025."
       ]
     },
+
     {
       "image": "",
       "imageAlt": "",
@@ -89,20 +88,42 @@ window.PORTFOLIO_DATA = {
       "title": "2D Game Prototype",
       "collection": "games",
       "category": "2D Games",
-      "role": "Course project",
+      "role": "Course Project",
       "tools": "Unity · C#",
-      "description": "A basic 2D game developed as part of a structured Unity course, exploring gameplay mechanics and the game-development workflow.",
+      "description": "A basic 2D game developed as part of a structured Unity course.",
       "details": [
         "Built a basic 2D game as part of a structured development course.",
         "Implemented basic gameplay elements and mechanics.",
-        "Gained practical experience with the Unity environment and C#.",
-        "Learned game-development fundamentals through practical project work."
-        },
-    {
-      "id": "maya-3d-project",
-      ...
+        "Gained practical experience with Unity and C#."
+      ]
     },
+
     {
+      "image": "./assets/maya-project-1.jpg.jpeg",
+      "imageAlt": "Maya 3D project created by Aadithyan Gopakumar",
+      "imageFit": "contain",
+
+      "images": [
+        {
+          "src": "./assets/maya-project-2.jpg.jpeg",
+          "alt": "Second view of the Maya 3D project"
+        },
+        {
+          "src": "./assets/maya-project-3.jpg.jpeg",
+          "alt": "Third view of the Maya 3D project"
+        },
+        {
+          "src": "./assets/maya-project-4.jpg.jpeg",
+          "alt": "Fourth view of the Maya 3D project"
+        }
+      ],
+
+      "videoFile": "",
+      "url": "",
+      "videoUrl": "",
+      "demoUrl": "",
+      "sourceUrl": "",
+      "driveUrl": "",
       "id": "maya-3d-project",
       "title": "Maya 3D Project",
       "collection": "maya",
@@ -113,28 +134,7 @@ window.PORTFOLIO_DATA = {
       "details": [
         "Created the models in Autodesk Maya.",
         "Worked on modelling, materials and presentation."
-      ],
-      "image": "./assets/maya-project-1.jpg.jpeg",
-      "imageAlt": "Maya 3D project created by Aadithyan Gopakumar",
-      "imageFit": "contain",
-    "images": [
-   {
-      "src": "./assets/maya-project-2.jpg.jpeg",
-      "alt": "Second view of the Maya project"
-  },
-  {
-     "src": "./assets/maya-project-3.jpg.jpeg",
-     "alt": "Third view of the Maya project"
-  },
-  {
-     "src": "./assets/maya-project-4.jpg.jpeg",
-     "alt": "Fourth view of the Maya project"
-  }
-],
-      "videoFile": "",
-      "url": "",
-      "videoUrl": "",
-      "demoUrl": "",
-      "sourceUrl": "",
-      "driveUrl": ""
+      ]
     }
+  ]
+};
