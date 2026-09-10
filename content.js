@@ -97,7 +97,44 @@ window.PORTFOLIO_DATA = {
         "Implemented basic gameplay elements and mechanics.",
         "Gained practical experience with the Unity environment and C#.",
         "Learned game-development fundamentals through practical project work."
-      ]
+        },
+    {
+      "id": "maya-3d-project",
+      ...
+    },
+    {
+      "id": "maya-3d-project",
+      "title": "Maya 3D Project",
+      "collection": "maya",
+      "category": "Maya",
+      "role": "3D Artist",
+      "tools": "Autodesk Maya",
+      "description": "A 3D project created using Autodesk Maya.",
+      "details": [
+        "Created the models in Autodesk Maya.",
+        "Worked on modelling, materials and presentation."
+      ],
+      "image": "./assets/work/maya-project-1.jpg",
+      "imageAlt": "Maya 3D project created by Aadithyan Gopakumar",
+      "imageFit": "contain",
+      "images": [
+        {
+          "src": "./assets/work/maya-project-2.jpg",
+          "alt": "Second view of the Maya project"
+        },
+        {
+          "src": "./assets/work/maya-project-3.jpg",
+          "alt": "Third view of the Maya project"
+        },
+        {
+          "src": "./assets/work/maya-project-4.jpg",
+          "alt": "Fourth view of the Maya project"
+        }
+      ],
+      "videoFile": "",
+      "url": "",
+      "videoUrl": "",
+      "demoUrl": "",
+      "sourceUrl": "",
+      "driveUrl": ""
     }
-  ]
-};
