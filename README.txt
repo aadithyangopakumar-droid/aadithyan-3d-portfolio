@@ -1,122 +1,165 @@
 AADITHYAN GOPAKUMAR — PORTFOLIO
-Resume content added. Additional project media can be added later.
+Home page + Work gallery
 
-OPEN THE NEW VERSION
-1. Extract this ZIP into a NEW folder on your computer.
+OPEN THIS VERSION
+1. Extract the ZIP into a NEW folder on your computer.
 2. In VS Code, choose File > Open Folder.
-3. Select the extracted Aadithyan_3D_Portfolio folder. It must contain
-   index.html, content.js, script.js, scene.js, styles.css and assets.
+3. Select the extracted Aadithyan_3D_Portfolio folder containing index.html.
 4. Right-click index.html and choose Open with Live Server.
-5. Close your previous preview tab so you do not confuse it with this version.
+5. Close your old preview tab. Choose Work in the new website's navigation.
 
-If you still see the old starter, check that VS Code has the NEW folder open.
-The new version has your education, freelance experience and an Email me link.
+If you see the old pause/play button, you have the old folder open.
+This version has no animation toggle and includes a separate Work page.
 
 WHAT IS INCLUDED
-- The black-and-white 3D hero, with a rotating abstract sculpture.
-- A scroll-driven fragment effect, with pause/play and reduced-motion support.
-- About: your name, biography, creative background and current learning.
-- Experience: freelance video editing, 2025 to present.
-- Education: BSc Gaming at JAIN, 2025 to 2028, plus school qualifications.
-- Projects: the basic Unity/C# 2D game documented in your resume.
-- Expandable project details that work without a video or playable demo.
-- Skills: Premiere Pro, familiarity with other creative tools, Unity/C#
-  exposure, current cloud/AI learning and selected working skills.
-- Email and telephone links, your existing GitHub profile and resume download.
-- Mobile navigation, keyboard access, section reveals and back-to-top links.
+- The black-and-white 3D hero with an automatically rotating sculpture,
+  subtle pointer interaction and a scroll-driven fragment effect.
+- No pause/play button. Rendering resumes automatically when the hero is
+  visible; background tabs and offscreen rendering do not waste resources.
+- A separate Work page with animated filters for All work, Posters,
+  Video Editing, Blender, Maya and 2D Games.
+- Kappiri (2025) under Video Editing, using the exact poster you supplied.
+  Your role is shown as Assistant Editor; director: Amith Roy.
+- The Unity/C# 2D course project described in your resume.
+- Full-size image viewing with Close and Escape; galleries with several
+  images also support Previous, Next and arrow keys.
+- Expandable project details, support for local video files and optional
+  project, video, playable demo, source and Drive links.
+- Your Instagram, LinkedIn, Behance and Google Drive folder links.
+- Your biography, freelance experience, education, skills and resume PDF.
+- Email and phone links, mobile navigation and scroll entry transitions.
+
+ASSETS THAT STILL NEED TO BE ADDED
+The supplied Behance profile and Drive folder could not be retrieved in
+this environment. Their links are included, but their files were not
+imported. Posters, Blender and Maya show "coming soon" until actual project
+entries are added. There are no sample images presented as your own work.
+
+Kappiri currently includes its poster and your credit. No film video URL
+was supplied, so it does not have a Watch video button yet. The 2D game
+entry has its description; add screenshots or a playable build when ready.
 
 YOUR FILES
-index.html  — page text, biography, education, experience and skill descriptions
-content.js  — contact settings and project entries, including optional images
-styles.css  — colours, fonts, layout and mobile styling
-script.js   — navigation, content rendering and section reveals
-scene.js    — optional 3D rendering and fragment animation
-assets/Aadithyan_Gopakumar_Resume.pdf — the exact resume you supplied
+index.html  — home page, biography, experience, education and skills
+works.html  — separate Work page and its static fallback content
+content.js  — YOUR LINKS AND PROJECTS; edit this to add your work
+styles.css  — theme, layouts, mobile styling and interface animation
+script.js   — navigation, filters, media viewer and content rendering
+scene.js    — automatic 3D rendering and fragment animation
+assets/Aadithyan_Gopakumar_Resume.pdf — your supplied resume
+assets/work/kappiri-2025.jpg — your supplied Kappiri poster
 
-The website is static and can run on your existing GitHub Pages address.
-There is no build step, account system or database.
+No build step, database, API key or paid service is needed.
 
-HOW THE CONTACT LINKS WORK
-Email me opens the visitor's email application with your address filled in.
-The phone link opens a supported calling application, especially on mobile.
-The website does not claim to submit or send a message itself.
-The resume link downloads the supplied PDF from the assets folder.
+YOUR PROFILE LINKS
+Instagram: https://www.instagram.com/row_650_/
+LinkedIn: https://www.linkedin.com/in/aadithyan-gopakumar-87661338a/
+Behance: https://www.behance.net/aadigopakumar
+Google Drive: https://drive.google.com/drive/folders/1woQAnirxjFxdm8iiiZuDEkIQVixj_ak1?usp=sharing
 
-ADD DETAILS LATER
-Open content.js. All optional fields can remain empty until you need them.
-- Update email, phone and phoneDisplay to change contact information.
-- Update the GitHub URL or add real Behance, LinkedIn or Instagram URLs.
-- Empty social links are hidden.
-- Update resume to point to a replacement PDF inside the assets folder.
-- Set a contact link to an empty string to hide it from the live page.
+ADD YOUR NEXT WORK
+1. Put exported images or videos in assets/work using simple filenames,
+   for example my-poster.jpg, model-front.webp or edit-preview.mp4.
+2. Open content.js in VS Code.
+3. Add a project object inside the "projects" array, separated from the
+   previous object by a comma. Give each project a unique "id".
+4. Save, refresh the Work page and select that project's category.
 
-The HTML contains your current resume content as a fallback when scripts are
-unavailable. If removing or changing personal contact information, update
-BOTH content.js and the CONTACT section in index.html. Remove or replace the
-PDF as well if its contact details should change.
+Example structure to fill with YOUR actual title, description and files:
 
-ADD A PROJECT IMAGE
-1. Put your own image in assets, for example environment-01.webp.
-2. In the relevant project entry in content.js, set:
-   image: "./assets/environment-01.webp",
-   imageAlt: "Describe your actual project image here.",
-3. Save and refresh. Use matching filename case on GitHub Pages.
-Images appear only after you provide a path. There are no invented images.
+{
+  "id": "my-project",
+  "title": "Your project title",
+  "collection": "posters",
+  "category": "Posters",
+  "role": "Your role",
+  "tools": "Software you used",
+  "description": "A short description of your actual work.",
+  "details": ["Your contribution.", "Another useful project detail."],
+  "image": "./assets/work/my-poster.jpg",
+  "imageAlt": "Describe the image for visitors who cannot see it.",
+  "imageFit": "contain",
+  "images": [],
+  "videoFile": "",
+  "videoUrl": "",
+  "demoUrl": "",
+  "sourceUrl": "",
+  "driveUrl": "",
+  "url": ""
+}
 
-ADD A VIDEO, DEMO OR SOURCE LINK
-Fill in the corresponding field with a real URL:
-videoUrl  — gameplay footage, a showreel or a project video
-demoUrl   — a playable demo or an external interactive build
-sourceUrl — the project's repository
-url       — the main project page, such as a Behance project
+Category settings:
+"collection": "posters"  +  "category": "Posters"
+"collection": "videos"   +  "category": "Video Editing"
+"collection": "blender"  +  "category": "Blender"
+"collection": "maya"     +  "category": "Maya"
+"collection": "games"    +  "category": "2D Games"
 
-Only filled links appear. A video URL opens the video page; it is not embedded.
-A demo URL opens the demo; this website does not host a Unity game by itself.
+The first four projects appear on the home page. Add "featured": false
+to an entry to keep it on the Work page only. Reorder projects in content.js
+to change their display order. Category buttons update automatically.
 
-ADD ANOTHER PROJECT
-Copy the existing object inside projects: [ ... ] in content.js.
-Separate project objects with a comma. Replace the title, category, tools,
-description and details with your actual work. Add only genuine media/links.
-The gallery layout adjusts automatically for one or several entries.
+ADD SEVERAL IMAGES TO ONE PROJECT
+Set "image" to the main cover. Put extra images in "images", for example:
+"images": [
+  { "src": "./assets/work/model-front.webp", "alt": "Front view" },
+  { "src": "./assets/work/model-side.webp", "alt": "Side view" }
+]
+All images are accessible through the viewer and detail thumbnails.
+"imageFit": "contain" keeps the entire image visible. Choose "cover" only
+if you want the cover thumbnail cropped to fill its frame.
 
-EDIT OTHER TEXT
-Open index.html and find the HOME, ABOUT, PROJECTS, SKILLS or CONTACT comment.
-Edit the text between HTML tags. Keep the section IDs unchanged so the
-navigation continues to work. Profile qualifications are not skill ratings;
-review the wording if your experience changes.
+ADD VIDEOS, GAMES AND LINKS
+"videoFile" — local MP4/WebM path for a built-in video player, for example
+              "./assets/work/edit-preview.mp4". A direct public video URL
+              can also work if the host permits playback.
+"videoUrl"  — a real video page, such as your film's YouTube/Vimeo URL.
+"demoUrl"   — the URL of your playable game, such as a published itch.io build.
+"sourceUrl" — your project repository.
+"driveUrl"  — a public Drive link for that specific project's files.
+"url"       — a project page, such as an individual Behance project.
 
-CHECK BEFORE PUBLISHING
-- Follow each navigation link and try the mobile Menu button.
-- Expand the Unity project details and collapse them again.
-- Try Email me, the phone link and Download resume.
-- Scroll past the 3D form, reverse the scroll and try Pause animation.
-- Preview a narrow browser window and check text/contact links fit.
-- Try any project images or URLs you add before uploading the changes.
+Empty fields stay hidden. A Drive sharing page belongs in "driveUrl";
+it is not a direct MP4 file. Video page links open the external website.
+The decorative 3D animation plays automatically. Actual project videos
+have normal playback controls and never autoplay with sound.
 
-If Google Fonts cannot load, system fonts are used. The optional 3D scene
-needs internet access to the same Three.js version as your original upload:
-https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js
-It also needs WebGL support. If it cannot load, text and navigation still work.
-Use Live Server for local previews instead of double-clicking the HTML file.
+EDIT YOUR DETAILS
+Update email, phone, phoneDisplay, resume, github or socials in content.js.
+Use index.html for biography, education, experience and skill descriptions.
+The two HTML files include fallback content for when JavaScript is disabled.
+If changing or removing personal information, update that HTML content and
+your resume PDF too. Match filename capitalisation exactly on GitHub Pages.
+
+Email opens the visitor's mail application; it does not submit a web form.
+The phone link opens a supported calling application. The resume link
+downloads your supplied PDF from the assets folder.
 
 UPDATE YOUR EXISTING GITHUB PAGES WEBSITE
 Repository:
 https://github.com/aadithyangopakumar-droid/aadithyan-3d-portfolio
 
-Upload ALL FIVE website files and the assets folder into the same repository
-folder that currently contains the live index.html. Keep them together.
-Do not upload the ZIP itself or an extra outer Aadithyan_3D_Portfolio folder.
-Commit the changes and wait for the GitHub Pages deployment to finish.
-Official upload instructions:
-https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository
+Upload all SIX website files listed below and the entire assets folder to
+the repository folder that currently contains the live index.html:
+index.html, works.html, content.js, styles.css, script.js, scene.js
 
-Your existing public address remains:
+Upload the files INSIDE Aadithyan_3D_Portfolio, not an extra outer folder
+or the ZIP itself. Commit your changes and wait for GitHub Pages to deploy.
+
+Your existing address remains:
 https://aadithyangopakumar-droid.github.io/aadithyan-3d-portfolio/
 
-This package has not been uploaded to your GitHub account.
+This download has not been uploaded to your GitHub account.
 
-VALIDATION
-Internal anchors, local assets, resume PDF, configuration and JavaScript
-syntax were checked. Live visual rendering and clicks in your browser remain
-to be reviewed through Live Server. Additional project images and public
-video/demo links were deferred as requested.
+VALIDATION AND PREVIEW
+JavaScript syntax, local links, page anchors, configuration, bundled media
+and archive integrity were checked. Live browser rendering and clicks were
+not tested in this environment. Use Live Server to review the final look,
+test all filters, open Kappiri's poster, close it with Escape and resize
+the window to check the mobile menu before publishing.
+
+Google Fonts fall back to system fonts if unavailable. The optional 3D
+scene needs WebGL and internet access to the pinned original dependency:
+https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js
+If the dependency cannot load, the text, projects and navigation still work.
+Preview through Live Server instead of double-clicking the HTML file.

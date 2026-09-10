@@ -22,7 +22,7 @@
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" hidden>Menu <span aria-hidden="true">+</span></button>
       <div class="nav-links" id="nav-links">
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+        <a href="./works.html">Work</a>
         <a href="#skills">Skills</a>
         <a class="nav-contact" href="#contact">Contact <span aria-hidden="true">↗</span></a>
       </div>
@@ -37,12 +37,12 @@
         <div class="hero-copy">
           <p class="role-label">Video Editor <span aria-hidden="true">/</span> BSc Gaming Student</p>
           <h1 class="hero-title" id="hero-title">I create <em>digital worlds.</em></h1>
-          <p class="intro">I’m Aadithyan Gopakumar. I edit visual stories with Premiere Pro and explore 3D creation and game development through Maya, Unity and C#.</p>
-          <div class="hero-actions"><a class="button button-light" href="#projects">View my work <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#about">About me</a></div>
+          <p class="intro">I’m Aadithyan Gopakumar. I create posters, edit visual stories and build 3D work and games with Blender, Maya and Unity.</p>
+          <div class="hero-actions"><a class="button button-light" href="./works.html">View my work <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#about">About me</a></div>
         </div>
         <div class="hero-visual" id="hero-visual" hidden>
           <canvas id="webgl" aria-hidden="true"></canvas>
-          <div class="visual-caption"><span>Move to rotate · Scroll to disperse</span><button class="motion-toggle" type="button" aria-label="Pause animation" hidden>Pause animation</button></div>
+          <div class="visual-caption"><span>Move to rotate · Scroll to disperse</span></div>
         </div>
       </div>
       <div class="hero-bottom"><p>Bengaluru, India <span aria-hidden="true">/</span> Video · 3D · Games</p><a href="#about">Scroll to explore <span aria-hidden="true">↓</span></a></div>
@@ -53,7 +53,7 @@
       <div class="wrap">
         <div class="about-layout">
           <div class="reveal"><p class="section-index">01 / About</p><h2 class="section-title" id="about-title">Stories.<br>Spaces.<br><span>Possibilities.</span></h2></div>
-          <div class="about-copy reveal"><p class="about-lead">Aadithyan<br>Gopakumar.</p><p>I’m a freelance video editor and BSc Gaming student based in Bengaluru. My practical experience includes video editing, content creation and creative software.</p><p>Premiere Pro is my main editing tool. I’m also familiar with After Effects, Final Cut Pro, Cinema 4D and Maya, with hands-on exposure to Unity and C# through game development projects.</p><p>I’m currently expanding my knowledge of AWS Cloud and AI tools, with an interest in the wider IT and technology industry.</p><a class="text-link" data-resume-link href="./assets/Aadithyan_Gopakumar_Resume.pdf" download="Aadithyan_Gopakumar_Resume.pdf">Download résumé <span aria-hidden="true">↓</span></a></div>
+          <div class="about-copy reveal"><p class="about-lead">Aadithyan<br>Gopakumar.</p><p>I’m a freelance video editor and BSc Gaming student based in Bengaluru. My practical experience includes video editing, content creation and creative software.</p><p>Premiere Pro is my main editing tool. Alongside video editing, I create posters and work with Blender and Maya. I’m also familiar with After Effects, Final Cut Pro and Cinema 4D, with hands-on exposure to Unity and C# through game development projects.</p><p>I’m currently expanding my knowledge of AWS Cloud and AI tools, with an interest in the wider IT and technology industry.</p><a class="text-link" data-resume-link href="./assets/Aadithyan_Gopakumar_Resume.pdf" download="Aadithyan_Gopakumar_Resume.pdf">Download résumé <span aria-hidden="true">↓</span></a></div>
         </div>
         <div class="background-grid">
           <section class="background-block reveal" aria-labelledby="experience-title"><p class="small-label">Experience</p><h3 id="experience-title">Freelance Video Editor</h3><p class="background-meta">Freelance <span aria-hidden="true">/</span> 2025–Present</p><ul class="content-list"><li>Edited video content for creative projects and clients.</li><li>Worked with footage, transitions, audio, effects and colour correction.</li><li>Used Premiere Pro and visual storytelling to improve content quality.</li></ul></section>
@@ -64,9 +64,10 @@
 
     <!-- PROJECTS: add project entries and optional media in content.js. -->
     <section class="section wrap" id="projects" aria-labelledby="projects-title">
-      <div class="section-top reveal"><p class="section-index">02 / Projects</p><p class="section-aside">Learning through making.</p></div>
-      <h2 class="section-title reveal" id="projects-title">Project <span>work.</span></h2>
-      <div class="project-grid" id="project-grid">
+      <div class="section-top reveal"><p class="section-index">02 / Projects</p><a class="text-link section-action" href="./works.html">Explore all work <span aria-hidden="true">↗</span></a></div>
+      <h2 class="section-title reveal" id="projects-title">Selected <span>work.</span></h2><div class="collection-shortcuts reveal" aria-label="Work collections"><a href="./works.html?category=posters">Posters</a><a href="./works.html?category=videos">Video Editing</a><a href="./works.html?category=blender">Blender</a><a href="./works.html?category=maya">Maya</a><a href="./works.html?category=games">2D Games</a></div>
+      <div class="project-grid" id="project-grid" data-gallery-mode="featured">
+        <article class="project reveal"><a class="project-image-link" href="./assets/work/kappiri-2025.jpg" target="_blank" rel="noopener noreferrer"><img src="./assets/work/kappiri-2025.jpg" alt="Kappiri film poster, with a dark forest and candlelit shrine" width="1280" height="720" loading="lazy"></a><div class="project-meta"><span>Video Editing</span><span>Film · 2025</span></div><h3>Kappiri</h3><p class="project-role">Assistant Editor</p><p class="project-description">Assistant editing work on Kappiri (2025), directed by Amith Roy.</p><details class="project-details"><summary>Read project details <span aria-hidden="true">+</span></summary><div class="project-detail-body"><p class="project-description">Role: Assistant Editor. Director: Amith Roy. Year: 2025.</p></div></details></article>
         <article class="project reveal"><div class="project-meta"><span>Course project</span><span>Unity · C#</span></div><h3>2D Game Prototype</h3><p class="project-description">A basic 2D game developed as part of a structured Unity course, exploring gameplay mechanics and the game-development workflow.</p><details class="project-details"><summary>Read project details <span aria-hidden="true">+</span></summary><div class="project-detail-body"><p class="small-label">What I worked on</p><ul class="content-list"><li>Built a basic 2D game as part of a structured development course.</li><li>Implemented basic gameplay elements and mechanics.</li><li>Gained practical experience with the Unity environment and C#.</li></ul></div></details></article>
       </div>
       <div class="work-empty reveal" id="work-empty" hidden><div><p class="small-label">In progress</p><h3>The next world<br>is taking shape.</h3></div><div class="work-empty-copy"><p>New projects will appear here.</p></div></div>
@@ -79,7 +80,7 @@
         <h2 class="section-title reveal" id="skills-title">My creative<br><span>toolkit.</span></h2>
         <div class="skill-grid">
           <article class="skill-card reveal"><p class="small-label">01 / Video editing</p><h3>Adobe Premiere Pro</h3><p>My primary editing software for footage, transitions, audio, effects and colour correction.</p><div class="skill-pills"><span>Video editing</span><span>Visual storytelling</span></div></article>
-          <article class="skill-card reveal"><p class="small-label">02 / Creative software</p><h3>Editing &amp; 3D</h3><p>Familiar with additional editing, motion and 3D tools.</p><div class="skill-pills"><span>After Effects</span><span>Final Cut Pro</span><span>Cinema 4D</span><span>Maya</span></div></article>
+          <article class="skill-card reveal"><p class="small-label">02 / Creative software</p><h3>Editing &amp; 3D</h3><p>Familiar with additional editing, motion and 3D tools.</p><div class="skill-pills"><span>After Effects</span><span>Final Cut Pro</span><span>Cinema 4D</span><span>Blender</span><span>Maya</span></div></article>
           <article class="skill-card reveal"><p class="small-label">03 / Game development</p><h3>Unity &amp; C#</h3><p>Hands-on exposure through a basic 2D game project and practical coursework.</p><div class="skill-pills"><span>2D gameplay</span><span>Game-development workflow</span></div></article>
           <article class="skill-card reveal"><p class="small-label">04 / Currently learning</p><h3>Cloud &amp; AI</h3><p>Expanding my understanding of cloud technology and AI tools.</p><div class="skill-pills"><span>AWS Cloud</span><span>AI tools</span></div></article>
         </div>
@@ -89,7 +90,7 @@
 
     <!-- CONTACT: editable links are also configured in content.js. -->
     <section class="section section-contact" id="contact" aria-labelledby="contact-title">
-      <div class="wrap"><p class="section-index reveal">04 / Contact</p><div class="contact-layout reveal"><h2 id="contact-title">Let’s<br><span>connect.</span></h2><div class="contact-side"><p id="contact-description">For video editing projects and creative opportunities.</p><a class="button button-light" id="contact-link" href="mailto:aadithyangopakumar@gmail.com">Email me <span aria-hidden="true">↗</span></a><a class="contact-email" id="contact-email" href="mailto:aadithyangopakumar@gmail.com">aadithyangopakumar@gmail.com</a><a class="phone-link" data-phone-link href="tel:+918590289500">+91 85902 89500</a><p class="contact-location">Bengaluru, India</p><div class="contact-links"><a id="github-link" href="https://github.com/aadithyangopakumar-droid" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a data-resume-link href="./assets/Aadithyan_Gopakumar_Resume.pdf" download="Aadithyan_Gopakumar_Resume.pdf">Download résumé <span aria-hidden="true">↓</span></a><span id="extra-socials"></span></div></div></div></div>
+      <div class="wrap"><p class="section-index reveal">04 / Contact</p><div class="contact-layout reveal"><h2 id="contact-title">Let’s<br><span>connect.</span></h2><div class="contact-side"><p id="contact-description">For video editing projects and creative opportunities.</p><a class="button button-light" id="contact-link" href="mailto:aadithyangopakumar@gmail.com">Email me <span aria-hidden="true">↗</span></a><a class="contact-email" id="contact-email" href="mailto:aadithyangopakumar@gmail.com">aadithyangopakumar@gmail.com</a><a class="phone-link" data-phone-link href="tel:+918590289500">+91 85902 89500</a><p class="contact-location">Bengaluru, India</p><div class="contact-links"><a id="github-link" href="https://github.com/aadithyangopakumar-droid" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a data-resume-link href="./assets/Aadithyan_Gopakumar_Resume.pdf" download="Aadithyan_Gopakumar_Resume.pdf">Download résumé <span aria-hidden="true">↓</span></a><span id="extra-socials" data-social-links><a href="https://www.instagram.com/row_650_/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.linkedin.com/in/aadithyan-gopakumar-87661338a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.behance.net/aadigopakumar" target="_blank" rel="noopener noreferrer">Behance ↗</a><a href="https://drive.google.com/drive/folders/1woQAnirxjFxdm8iiiZuDEkIQVixj_ak1?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive ↗</a></span></div></div></div></div>
     </section>
   </main>
 

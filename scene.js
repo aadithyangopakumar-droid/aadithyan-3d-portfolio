@@ -32,8 +32,6 @@ export function initScene() {
   const layout = document.querySelector("#hero-layout");
   const hero = document.querySelector("#top");
   const canvas = document.querySelector("#webgl");
-  const button = document.querySelector(".motion-toggle");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   const compact = window.matchMedia("(max-width: 760px)");
   let renderer;
@@ -88,7 +86,6 @@ export function initScene() {
     rim.position.set(-1, 2, -4);
     scene.add(rim);
 
-    let paused = reducedMotion.matches;
     let visible = true;
     let contextLost = false;
     let cleaned = false;
@@ -101,7 +98,6 @@ export function initScene() {
 
     stage.hidden = false;
     layout.classList.add("has-scene");
-    button.hidden = false;
 
     const render = () => {
       if (!contextLost && !cleaned) renderer.render(scene, camera);
@@ -132,7 +128,7 @@ export function initScene() {
       const blend = 1 - Math.exp(-delta * 4.5);
       smoothPointer.x += (pointer.x - smoothPointer.x) * blend;
       smoothPointer.y += (pointer.y - smoothPointer.y) * blend;
-      const target = reducedMotion.matches ? 0 : scrollTarget;
+      const target = scrollTarget;
       explosion += (target - explosion) * blend;
       sculpture.morphTargetInfluences[0] = explosion;
       sculpture.rotation.set(.35 + time * .095 + smoothPointer.y * .22, .3 + time * .14 + smoothPointer.x * .3, -.15 + time * .025);
@@ -145,31 +141,10 @@ export function initScene() {
     };
     const syncLoop = () => {
       previousTime = 0;
-      renderer.setAnimationLoop(!paused && visible && !document.hidden && !contextLost && !cleaned ? animate : null);
-    };
-    const syncButton = () => {
-      button.textContent = paused ? "Play animation" : "Pause animation";
-      button.setAttribute("aria-label", button.textContent);
-    };
-    const toggleMotion = () => {
-      paused = !paused;
-      syncButton();
-      syncLoop();
-    };
-    const changePreference = () => {
-      paused = reducedMotion.matches;
-      if (paused) {
-        explosion = 0;
-        sculpture.morphTargetInfluences[0] = 0;
-        sculpture.scale.setScalar(1.2);
-        haloMaterial.opacity = .075;
-        render();
-      }
-      syncButton();
-      syncLoop();
+      renderer.setAnimationLoop(visible && !document.hidden && !contextLost && !cleaned ? animate : null);
     };
     const movePointer = (event) => {
-      if (!finePointer.matches || paused) return;
+      if (!finePointer.matches) return;
       const rect = stage.getBoundingClientRect();
       pointer.x = (event.clientX - rect.left) / rect.width * 2 - 1;
       pointer.y = (event.clientY - rect.top) / rect.height * 2 - 1;
@@ -197,13 +172,11 @@ export function initScene() {
     if (visibilityObserver) visibilityObserver.observe(stage);
     if (resizeObserver) resizeObserver.observe(stage);
     else window.addEventListener("resize", measure);
-    button.addEventListener("click", toggleMotion);
     stage.addEventListener("pointermove", movePointer, { passive: true });
     stage.addEventListener("pointerleave", resetPointer);
     window.addEventListener("scroll", updateScroll, { passive: true });
     window.addEventListener("resize", updateScroll, { passive: true });
     document.addEventListener("visibilitychange", syncLoop);
-    reducedMotion.addEventListener("change", changePreference);
     canvas.addEventListener("webglcontextlost", loseContext);
     canvas.addEventListener("webglcontextrestored", restoreContext);
     window.addEventListener("pagehide", (event) => {
@@ -223,7 +196,6 @@ export function initScene() {
     window.addEventListener("pageshow", () => {
       if (!cleaned) { measure(); updateScroll(); syncLoop(); }
     });
-    syncButton();
     measure();
     updateScroll();
     syncLoop();
