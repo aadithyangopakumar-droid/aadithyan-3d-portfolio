@@ -38,7 +38,9 @@ img { display: block; max-width: 100%; }
 .hero { padding-top: 24px; }
 .hero-layout { display: grid; grid-template-columns: 1fr; align-items: center; min-height: calc(100svh - 208px); }
 .hero-layout.has-scene { grid-template-columns: 1.04fr .96fr; }
+.hero-layout.has-portrait { grid-template-columns: minmax(0, 1.05fr) minmax(310px, .78fr); gap: clamp(36px, 6vw, 92px); }
 .hero-copy { position: relative; z-index: 2; padding-block: 40px; }
+.hero-name { margin-bottom: 16px; color: #f4f4f2; font-family: "Orbitron", "Space Grotesk", sans-serif; font-size: 12px; font-weight: 700; line-height: 1.5; letter-spacing: .16em; text-transform: uppercase; }
 .role-label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 10px; border: 1px solid var(--line); border-radius: 100px; padding: 10px 15px; color: #d7d7d5; font-size: 14px; line-height: 1.5; background: rgba(255,255,255,.035); }
 .role-label span { color: #777; }
 .hero-title { max-width: 8.9ch; font-size: clamp(3.25rem, 7.15vw, 7.2rem); font-weight: 600; line-height: .98; letter-spacing: -.065em; margin-block: 28px; }
@@ -54,6 +56,12 @@ img { display: block; max-width: 100%; }
 .hero-visual { position: relative; height: clamp(450px, 70svh, 720px); min-width: 0; isolation: isolate; }
 #webgl { display: block; width: 100%; height: 100%; }
 .visual-caption { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: var(--muted); }
+.hero-portrait { position: relative; z-index: 1; width: min(100%, 470px); justify-self: end; animation: portrait-in .9s var(--ease) .12s both; }
+.hero-portrait::before { content: ""; position: absolute; inset: 8% -8% -6% 12%; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.12), transparent 68%); filter: blur(24px); }
+.portrait-frame { position: relative; overflow: hidden; aspect-ratio: 3 / 4; border: 1px solid #3a3a3a; border-radius: 28px; background: #111; box-shadow: 0 28px 80px rgba(0,0,0,.45); }
+.portrait-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 62%, rgba(8,8,8,.35)); pointer-events: none; }
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; filter: saturate(.88) contrast(1.03); }
+.portrait-caption { display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .hero-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.8; }
 .hero-bottom p span { color: #777; margin-inline: 8px; }
 .hero-bottom a { display: flex; gap: 24px; align-items: center; min-height: 44px; color: var(--text); font-size: 14px; }
@@ -196,12 +204,15 @@ html.viewer-open { overflow: hidden; }
 .viewer-counter { font-size: 14px; color: var(--muted); }
 @keyframes page-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes detail-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes portrait-in { from { opacity: 0; transform: translateY(24px) scale(.98); } to { opacity: 1; transform: none; } }
 @media (hover: none) { .image-preview-hint { opacity: 1; transform: none; } }
 @media (max-width: 1000px) {
   .visual-caption { justify-content: flex-end; }
   .visual-caption > span { display: none; }
   .hero-title { font-size: clamp(3.1rem, 7.4vw, 5.2rem); }
   .hero-visual { height: 490px; }
+  .hero-layout.has-portrait { grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr); gap: 36px; }
+  .hero-portrait { width: min(100%, 400px); }
   .contact-layout { gap: 32px; }
 }
 @media (max-width: 760px) {
@@ -216,11 +227,15 @@ html.viewer-open { overflow: hidden; }
   .nav-ready.is-menu-open .nav-links { display: flex; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 0 8px; }
   .nav-ready.is-menu-open .nav-links a { font-size: 18px; justify-content: space-between; padding: 8px 0; min-height: 52px; }
   .hero { padding-top: 8px; }
-  .hero-layout, .hero-layout.has-scene { grid-template-columns: 1fr; min-height: 0; }
+  .hero-layout, .hero-layout.has-scene, .hero-layout.has-portrait { grid-template-columns: 1fr; min-height: 0; }
   .hero-copy { padding-block: 36px 12px; }
+  .hero-name { margin-bottom: 12px; font-size: 11px; }
   .role-label { font-size: 12px; gap: 8px; }
   .hero-title { font-size: clamp(3.25rem, 14vw, 5.5rem); margin-block: 24px; }
   .hero-visual { height: clamp(270px, 80vw, 430px); margin-top: 12px; }
+  .hero-portrait { width: min(100%, 390px); justify-self: center; margin-top: 24px; }
+  .portrait-frame { border-radius: 22px; }
+  .portrait-caption { padding-inline: 2px; }
   .hero-bottom { margin-top: 24px; align-items: flex-start; flex-direction: column; gap: 4px; }
   .hero-bottom p span { margin-inline: 5px; }
   .hero-bottom a { gap: 16px; }
