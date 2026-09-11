@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111b24">
+  <meta name="description" content="Play Iron Dojo, an AI-assisted 3D martial-arts browser game by Aadithyan Gopakumar. Fight an AI opponent using keyboard or touch controls.">
+  <title>Iron Dojo — Aadithyan Gopakumar</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23111b24'/%3E%3Cpath d='M8 12h24M12 18h16M15 12v20M25 12v20' stroke='%23e2b36a' stroke-width='4'/%3E%3C/svg%3E">
+  <style>
+:root{color-scheme:dark;--ink:#101c24;--paper:#edf2ef;--gold:#e2b36a;--teal:#6ce0cb;--red:#f08978}*{box-sizing:border-box}body{margin:0;color:var(--paper);background:#101b25;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;color:inherit}a{color:inherit}button:focus-visible,a:focus-visible,canvas:focus-visible{outline:3px solid var(--gold);outline-offset:4px}button:disabled{opacity:.5;cursor:wait}[hidden]{display:none!important}#game-shell{position:relative;width:100%;height:100svh;min-height:460px;overflow:hidden}#arena{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:none;outline-offset:-4px}.topline{position:absolute;z-index:4;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px max(24px,env(safe-area-inset-right)) 12px max(24px,env(safe-area-inset-left));background:linear-gradient(#101b25dd,transparent)}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-size:14px;font-weight:800;letter-spacing:.12em}.brand-symbol{display:grid;place-items:center;width:36px;height:40px;border:1px solid #e2b36a66;color:var(--gold);font:800 26px Georgia,serif}.brand small{display:block;font-size:10px;letter-spacing:.16em;color:#adbac3;font-weight:500;margin-top:3px}.top-actions{display:flex;gap:8px}.top-actions button{border:1px solid #ffffff30;border-radius:4px;background:#0a17217d;padding:9px 14px;font-size:14px;min-height:42px}.top-actions button:hover{background:#253440}.hud{position:absolute;z-index:3;display:grid;grid-template-columns:minmax(0,1fr) 110px minmax(0,1fr);gap:28px;top:100px;left:50%;transform:translateX(-50%);width:min(940px,90%);pointer-events:none}.fighter-label{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;letter-spacing:.1em;text-shadow:0 2px 6px #000}.fighter-label span{color:var(--gold);font-size:21px;letter-spacing:.25em}.health{height:15px;margin-top:6px;background:#16212be6;border:1px solid #ffffff40;transform:skewX(-12deg);padding:2px}.health div{height:100%;width:100%;transform-origin:left;background:var(--teal);transition:transform .12s linear}.rival-status .health div{background:var(--red);transform-origin:right}.status-bottom{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.08em;margin-top:8px;color:#c3cdd1;text-shadow:0 1px 3px #000}progress{display:block;width:100%;height:4px;margin-top:5px;border:0;background:#23323c;appearance:none}progress::-webkit-progress-bar{background:#23323c}progress::-webkit-progress-value{background:#e2b36a}progress::-moz-progress-bar{background:#e2b36a}.round-status{text-align:center;line-height:1.15}.round-status>span{font-size:11px;letter-spacing:.12em}.round-status strong{display:block;color:var(--gold);font-size:48px;font-weight:800;font-variant-numeric:tabular-nums}.round-status small{font-size:9px;letter-spacing:.13em;color:#b9c7cb}.screen{position:absolute;inset:0;z-index:5;display:flex;align-items:center;overflow:auto;background:linear-gradient(90deg,#0c1827f0 0%,#0c1827cc 31%,#0c182766 48%,transparent 75%)}.menu-panel{margin:88px 6vw 32px;width:440px;max-width:90%}.eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--gold);margin:0 0 18px}h1{font-size:clamp(64px,7.5vw,110px);font-weight:900;line-height:.82;letter-spacing:-.065em;margin:0;font-style:italic}h1 span{color:var(--gold)}.menu-description{font-size:22px;line-height:1.3;letter-spacing:-.035em;color:#d3dde0;margin:25px 0 20px}.menu-rule{width:56px;height:2px;background:var(--gold);margin-bottom:18px}.goal{color:#bac9cd;font-size:14px;line-height:1.65;margin-bottom:20px}.primary{display:block;width:100%;max-width:335px;min-height:54px;background:var(--gold);color:#14202b;border:0;font-weight:800;text-transform:uppercase;letter-spacing:.09em;font-size:14px;box-shadow:4px 4px 0 #e2b36a33;transition:background .2s,transform .2s}.primary:hover{background:#f4cb8a;transform:translateY(-2px)}.secondary{display:block;width:100%;max-width:335px;min-height:48px;background:transparent;border:1px solid #7d93985c;margin-top:14px;font-size:14px}.secondary:hover{background:#ffffff10}.start-controls{display:flex;flex-wrap:wrap;gap:9px 16px;max-width:360px;margin-top:26px;color:#b5c4cd;font-size:12px}.start-controls span{white-space:nowrap}kbd{font-family:inherit;font-size:11px;padding:3px 6px;line-height:1.2;border:1px solid #aabbcc50;border-bottom-width:2px;background:#101b2599;border-radius:3px;color:#e6ecee;white-space:nowrap}.touch-note{display:none;font-size:12px;line-height:1.6;color:#b5c4cd}.ai-credit{max-width:335px;margin:24px 0 0;font-size:11px;color:#97aab7}.modal-screen{background:#07121dbd;backdrop-filter:blur(9px);justify-content:center;padding:24px}.small-panel{width:min(100%,430px);padding:32px;background:#152530ee;border:1px solid #e2b36a5c;box-shadow:0 20px 80px #0008}.small-panel h2{font-size:38px;line-height:1.1;letter-spacing:-.04em;margin:0 0 22px}.small-panel p{color:#c0d0d5;font-size:16px}.small-panel .eyebrow{font-size:12px;color:var(--gold)}.small-panel .primary,.small-panel .secondary{max-width:none}.back-link{display:block;width:fit-content;margin:24px auto 0;font-size:14px;color:#c6d3d8;text-underline-offset:5px}.share-status{font-size:12px!important;overflow-wrap:anywhere}.announcer{position:absolute;z-index:3;top:38%;left:0;right:0;text-align:center;font-size:clamp(32px,6vw,72px);font-weight:900;letter-spacing:-.03em;color:var(--paper);text-shadow:0 4px 10px #000b;pointer-events:none}.event-label{position:absolute;left:50%;top:26%;transform:translateX(-50%);font-weight:800;letter-spacing:.1em;font-size:13px;color:var(--gold);text-shadow:0 2px 5px #000;pointer-events:none;text-align:center}.touch-controls{position:absolute;z-index:3;inset:auto 0 0;height:205px;pointer-events:none;background:linear-gradient(transparent,#07141a99)}#joystick{position:absolute;width:124px;height:124px;left:max(28px,env(safe-area-inset-left));bottom:max(28px,env(safe-area-inset-bottom));border-radius:50%;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none}.joystick-ring{position:absolute;inset:0;border:1px solid #bed2df70;border-radius:50%;background:#a8cad510}#joystick-knob{position:absolute;left:38px;top:38px;width:48px;height:48px;border-radius:50%;background:#cfdee34d;border:1px solid #c9e3e6b3;pointer-events:none}.joystick-label{position:absolute;top:129px;left:0;width:100%;text-align:center;letter-spacing:.16em;font-size:10px;color:#b9cad0}.action-pad{position:absolute;right:max(22px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(2,72px);gap:12px;pointer-events:auto}.fight-action{width:72px;height:66px;border:1px solid #f5e2c570;background:#142430c9;border-radius:12px;font-weight:800;font-size:11px;letter-spacing:.035em;touch-action:none;user-select:none;-webkit-user-select:none}.fight-action small{display:block;font-size:8px;letter-spacing:.1em;font-weight:500}.fight-action.active{transform:scale(.94);background:#617982}.fight-action.kick{background:#e2b36ade;color:#162631}.fight-action.punch{background:#76d5cacc;color:#142530}.fight-action.block{color:#e4ded2}.fight-action.dodge{color:#d2dee6}#controls-hint{position:absolute;z-index:3;bottom:24px;left:50%;transform:translateX(-50%);display:flex;justify-content:center;flex-wrap:wrap;gap:16px;width:95%;color:#b7c7ce;font-size:12px;text-shadow:0 1px 5px #000}.no-script{position:absolute;z-index:9;inset:0;display:grid;place-items:center;background:var(--ink);padding:32px}@media (pointer:coarse){.start-controls{display:none}.touch-note{display:block}#controls-hint{display:none!important}}@media(max-width:760px){.topline{padding:12px 18px;gap:8px}.brand{font-size:12px;gap:8px}.brand small{font-size:8px}.brand-symbol{width:30px;height:32px;font-size:22px}.top-actions button{font-size:12px;min-height:36px;padding:6px 10px}.hud{top:78px;width:92%;gap:12px;grid-template-columns:1fr 68px 1fr}.fighter-label{font-size:10px;letter-spacing:.04em}.fighter-label span{font-size:14px;letter-spacing:.1em}.round-status strong{font-size:36px}.round-status>span{font-size:9px}.health{height:12px}.status-bottom{font-size:8px}.round-status small{font-size:8px}.screen:not(.modal-screen){background:linear-gradient(90deg,#0c1827eb,#0c182799 65%,#0c182733)}.menu-panel{margin:86px 7vw 24px;width:360px}h1{font-size:80px}.menu-description{font-size:20px;margin:20px 0}.menu-rule{margin-bottom:12px}.goal{font-size:13px}.eyebrow{font-size:10px}.ai-credit{font-size:10px;margin-top:18px}.event-label{top:24%}.announcer{top:38%}}@media(max-height:590px) and (min-width:600px){#game-shell{min-height:320px}.topline{padding-top:9px}.brand small{display:none}.hud{top:62px;width:75%;max-width:800px}.health{height:10px}.round-status strong{font-size:32px}.status-bottom{font-size:9px}.menu-panel{margin:72px 5vw 15px;width:370px}.eyebrow{margin-bottom:10px;font-size:10px}h1{font-size:58px}.menu-description{font-size:17px;margin:16px 0 10px}.menu-rule{display:none}.goal{margin:10px 0;font-size:12px}.primary{min-height:44px;font-size:12px}.start-controls{margin-top:16px;font-size:10px}.touch-note{margin:12px 0 0;font-size:10px}.ai-credit{margin-top:10px;font-size:9px}.small-panel{padding:22px}.small-panel h2{font-size:30px;margin-bottom:12px}.small-panel p{font-size:14px}.small-panel .secondary{min-height:38px}.back-link{margin-top:12px}.action-pad{grid-template-columns:repeat(2,60px);gap:8px;bottom:12px}.fight-action{width:60px;height:50px;font-size:9px}#joystick{width:110px;height:110px;bottom:22px}#joystick-knob{left:31px;top:31px}.joystick-label{top:114px}#controls-hint{bottom:12px;font-size:10px;gap:10px}.event-label{top:32%}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}.primary:hover{transform:none}}
+
+</style>
+</head>
+<body>
+  <div id="game-shell">
+    <canvas id="arena" aria-label="3D martial arts arena. You are the fighter with the teal belt." tabindex="0"></canvas>
+    <header class="topline"><a class="brand" href="https://aadithyangopakumar-droid.github.io/aadithyan-3d-portfolio/" aria-label="Return to Aadithyan's portfolio"><span class="brand-symbol" aria-hidden="true">II</span><span>IRON DOJO<small>BY AADITHYAN GOPAKUMAR</small></span></a><div class="top-actions"><button id="sound" aria-pressed="false" title="Toggle sound">Sound off</button><button id="pause" disabled>Pause</button></div></header>
+    <div class="hud" id="hud" hidden>
+      <section class="fighter-status player-status" aria-label="Your status"><div class="fighter-label"><strong>YOU</strong><span id="player-wins" aria-label="Rounds won">○ ○</span></div><div class="health"><div id="player-health"></div></div><div class="status-bottom"><span id="player-hp">100 HP</span><span>ENERGY</span></div><progress id="player-energy" value="100" max="100" aria-label="Your energy"></progress></section>
+      <div class="round-status"><span id="round-label">ROUND 1</span><strong id="timer" aria-label="Seconds remaining">60</strong><small>FIRST TO 2</small></div>
+      <section class="fighter-status rival-status" aria-label="Opponent status"><div class="fighter-label"><strong>SPARRING AI</strong><span id="ai-wins" aria-label="Opponent rounds won">○ ○</span></div><div class="health"><div id="ai-health"></div></div><div class="status-bottom"><span id="ai-intent">Ready</span><span id="ai-hp">100 HP</span></div><progress id="ai-energy" value="100" max="100" aria-label="Opponent energy"></progress></section>
+    </div>
+    <div class="announcer" id="announcer" aria-live="polite"></div>
+    <div class="event-label" id="event-label" aria-live="off"></div>
+    <div class="start-screen screen" id="start-screen">
+      <section class="menu-panel" aria-labelledby="game-title"><p class="eyebrow">3D MARTIAL ARTS · SOLO VS AI</p><h1 id="game-title">IRON<br><span>DOJO</span></h1><p class="menu-description">Find your distance.<br>Time your strike.</p><div class="menu-rule"></div><p class="goal">Win two rounds. Your fighter wears teal.<br>Face your opponent automatically.</p><button class="primary" id="start" disabled>Preparing arena…</button><div class="start-controls"><span><kbd>W A S D</kbd> Move</span><span><kbd>J</kbd> Punch</span><span><kbd>K</kbd> Kick</span><span><kbd>Space</kbd> Block</span><span><kbd>L</kbd> Dodge</span><span><kbd>P</kbd> Pause</span></div><p class="touch-note">On a phone? Use the joystick and action buttons.<br>Landscape gives you a wider view.</p><p class="ai-credit">An AI-assisted game experiment by Aadithyan Gopakumar.</p></section>
+    </div>
+    <div class="screen modal-screen" id="pause-screen" hidden><section class="small-panel" role="dialog" aria-modal="true" aria-labelledby="pause-title"><p class="eyebrow">TAKE A BREATH</p><h2 id="pause-title">Paused.</h2><p>Watch the opponent’s stance. Block the strike, then counter.</p><button class="primary" id="resume">Resume fight</button><button class="secondary" id="restart">Restart match</button></section></div>
+    <div class="screen modal-screen" id="result-screen" hidden><section class="small-panel" role="dialog" aria-modal="true" aria-labelledby="result-title"><p class="eyebrow" id="result-eyebrow">MATCH COMPLETE</p><h2 id="result-title">Well fought.</h2><p id="result-copy"></p><button class="primary" id="rematch">Fight again</button><button class="secondary" id="share">Copy game link</button><p class="share-status" id="share-status" role="status"></p><a class="back-link" href="https://aadithyangopakumar-droid.github.io/aadithyan-3d-portfolio/">Back to portfolio</a></section></div>
+    <div class="screen modal-screen" id="error-screen" hidden><section class="small-panel" role="alert"><h2>Let’s get you playing.</h2><p id="error-copy">Your browser could not start 3D graphics. Try an up-to-date Chrome, Edge, Firefox or Safari with hardware acceleration enabled.</p><button class="primary" onclick="location.reload()">Try again</button><a class="back-link" href="https://aadithyangopakumar-droid.github.io/aadithyan-3d-portfolio/">Back to portfolio</a></section></div>
+    <div class="touch-controls" id="touch-controls" hidden><div id="joystick" aria-label="Drag to move" role="group"><span class="joystick-ring"></span><span id="joystick-knob"></span><span class="joystick-label">MOVE</span></div><div class="action-pad"><button class="fight-action block" data-action="block">BLOCK<small>HOLD</small></button><button class="fight-action dodge" data-action="dash">DODGE</button><button class="fight-action punch" data-action="punch">PUNCH</button><button class="fight-action kick" data-action="kick">KICK</button></div></div>
+    <footer id="controls-hint" hidden><span><kbd>W A S D</kbd> / arrows &nbsp; Move</span><span><kbd>J</kbd> Punch</span><span><kbd>K</kbd> Kick</span><span><kbd>Space</kbd> Block</span><span><kbd>L</kbd> Dodge</span><span><kbd>P</kbd> Pause</span></footer>
+    <noscript><div class="no-script">Enable JavaScript to play Iron Dojo.</div></noscript>
+  </div>
+<script>
+/* Iron Dojo combat simulation. No rendering or browser dependencies. */
+(function(root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else root.IronDojoCore = factory();
+})(typeof window === 'undefined' ? this : window, function() {
+  'use strict';
+  const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+  const ATTACKS = {
+    punch: { cost: 10, damage: 9, reach: 1.72, startup: .17, active: .13, duration: .46 },
+    kick: { cost: 23, damage: 16, reach: 2.22, startup: .31, active: .14, duration: .80 }
+  };
+  const angleTo = (a, b) => Math.atan2(b.x - a.x, b.z - a.z);
+  const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
+  function fighter(id, x) {
+    return { id, x, z: 0, yaw: id === 'player' ? Math.PI / 2 : -Math.PI / 2,
+      hp: 100, energy: 100, wins: 0, attack: null, stun: 0, flash: 0, block: false,
+      dash: 0, dashCooldown: 0, dx: 0, dz: 0, moving: 0, walk: 0, hand: 0,
+      decision: .65, think: { x: 0, z: 0, block: false }, intent: 'Ready' };
+  }
+  class Match {
+    constructor(seed = Date.now()) { this.seed = seed >>> 0 || 42; this.reset(); }
+    random() { let v = this.seed; v ^= v << 13; v ^= v >>> 17; v ^= v << 5; this.seed = v >>> 0; return this.seed / 4294967296; }
+    reset() {
+      this.player = fighter('player', -1.8); this.ai = fighter('ai', 1.8);
+      this.phase = 'menu'; this.paused = false; this.phaseTime = 0; this.time = 60;
+      this.round = 1; this.events = []; this.winner = null; this.roundWinner = null; this.roundReason = '';
+    }
+    start() { this.reset(); this.phase = 'countdown'; this.phaseTime = 3; }
+    pause() { if (['fight', 'countdown', 'roundEnd'].includes(this.phase)) this.paused = true; }
+    resume() { this.paused = false; }
+    newRound() {
+      const pw = this.player.wins, aw = this.ai.wins;
+      this.player = fighter('player', -1.8); this.ai = fighter('ai', 1.8);
+      this.player.wins = pw; this.ai.wins = aw; this.round++;
+      this.phase = 'countdown'; this.phaseTime = 3; this.time = 60; this.roundWinner = null;
+    }
+    attack(f, type) {
+      const a = ATTACKS[type];
+      if (!a || this.phase !== 'fight' || this.paused || f.hp <= 0 || f.attack || f.stun > 0 || f.block || f.dash > 0 || f.energy < a.cost) return false;
+      f.energy -= a.cost; f.hand = 1 - f.hand;
+      f.attack = { type, t: 0, hit: false, yaw: f.yaw, hand: f.hand };
+      this.events.push({ type: 'swing', who: f.id, attack: type });
+      return true;
+    }
+    dodge(f, x, z, other) {
+      if (f.attack || f.stun > 0 || f.dash > 0 || f.dashCooldown > 0 || f.energy < 28 || this.phase !== 'fight' || this.paused) return false;
+      let n = Math.hypot(x, z);
+      if (n < .1) { x = f.x - other.x; z = f.z - other.z; n = Math.hypot(x, z) || 1; }
+      f.dx = x / n; f.dz = z / n; f.dash = .25; f.dashCooldown = .8; f.energy -= 28; f.block = false;
+      this.events.push({ type: 'dodge', who: f.id }); return true;
+    }
+    aiInput(dt) {
+      const f = this.ai, p = this.player, dist = distance(f, p);
+      f.decision -= dt;
+      if (f.decision <= 0) {
+        const dx = (p.x - f.x) / (dist || 1), dz = (p.z - f.z) / (dist || 1);
+        const retreat = f.energy < 24 || (p.attack && this.random() < .22);
+        const advance = dist > 1.55;
+        const speed = retreat ? -.65 : advance ? .85 : this.random() < .25 ? -.25 : 0;
+        const side = this.random() < .5 ? -.28 : .28;
+        f.think = { x: dx * speed - dz * side, z: dz * speed + dx * side,
+          block: !!p.attack && dist < 2.5 && this.random() < .67 && f.energy > 15 };
+        if (!f.think.block && !retreat && dist < 2.12 && this.random() < .78) f.think.action = dist > 1.67 || this.random() < .4 ? 'kick' : 'punch';
+        f.decision = .27 + this.random() * .40;
+      }
+      const input = { ...f.think };
+      delete f.think.action;
+      return input;
+    }
+    updateFighter(f, other, dt, input) {
+      f.stun = Math.max(0, f.stun - dt); f.flash = Math.max(0, f.flash - dt);
+      f.dashCooldown = Math.max(0, f.dashCooldown - dt);
+      f.block = !!input.block && f.stun <= 0 && !f.attack && f.dash <= 0 && f.energy > 2;
+      if (!f.attack && f.stun <= 0) f.yaw = angleTo(f, other);
+      f.energy = clamp(f.energy + dt * (f.block ? -6 : f.attack ? 4 : 20), 0, 100);
+      if (input.action === 'dash') this.dodge(f, input.x || 0, input.z || 0, other);
+      else if (input.action) this.attack(f, input.action);
+      let x = Number.isFinite(input.x) ? input.x : 0, z = Number.isFinite(input.z) ? input.z : 0;
+      const magnitude = Math.hypot(x, z); if (magnitude > 1) { x /= magnitude; z /= magnitude; }
+      let speed = f.block ? 1.1 : f.attack ? .5 : 2.65;
+      if (f.stun > 0) speed = 0;
+      if (f.dash > 0) { x = f.dx; z = f.dz; speed = 8.0; f.dash = Math.max(0, f.dash - dt); }
+      f.moving = Math.hypot(x, z) * speed;
+      f.walk += f.moving * dt * 4.5;
+      f.x = clamp(f.x + x * speed * dt, -4.1, 4.1); f.z = clamp(f.z + z * speed * dt, -3.1, 3.1);
+      f.intent = f.stun > 0 ? 'Recovering' : f.attack ? f.attack.type === 'kick' ? 'Kick' : 'Punch' : f.block ? 'Blocking' : f.energy < 24 ? 'Recovering energy' : 'Watching';
+      if (f.attack) {
+        f.attack.t += dt;
+        const spec = ATTACKS[f.attack.type];
+        if (f.attack.t >= spec.duration) f.attack = null;
+      }
+    }
+    resolveAttack(f, other) {
+      const move = f.attack; if (!move || move.hit || f.stun > 0) return;
+      const spec = ATTACKS[move.type];
+      if (move.t < spec.startup || move.t > spec.startup + spec.active) return;
+      const dist = distance(f, other);
+      const dot = Math.cos(angleTo(f, other) - move.yaw);
+      if (dist > spec.reach || dot < .45) return;
+      move.hit = true;
+      if (other.dash > .06) { this.events.push({ type: 'evade', who: other.id }); return; }
+      const defending = other.block && Math.cos(angleTo(other, f) - other.yaw) > .3;
+      let damage = spec.damage, guardBreak = false;
+      if (defending) {
+        const cost = move.type === 'kick' ? 30 : 19;
+        guardBreak = other.energy < cost;
+        other.energy = Math.max(0, other.energy - cost);
+        damage = guardBreak ? Math.ceil(spec.damage * .7) : 1;
+        if (guardBreak) { other.block = false; other.stun = .65; }
+      } else { other.stun = .20; other.attack = null; }
+      other.hp = Math.max(0, other.hp - damage); other.flash = .16;
+      const push = defending && !guardBreak ? .12 : move.type === 'kick' ? .42 : .18;
+      const dx = (other.x - f.x) / (dist || 1), dz = (other.z - f.z) / (dist || 1);
+      other.x = clamp(other.x + dx * push, -4.1, 4.1); other.z = clamp(other.z + dz * push, -3.1, 3.1);
+      this.events.push({ type: 'hit', who: f.id, target: other.id, blocked: defending && !guardBreak, guardBreak, damage,
+        x: (f.x + other.x) / 2, y: move.type === 'kick' ? 1.12 : 1.48, z: (f.z + other.z) / 2 });
+    }
+    finishRound() {
+      const p = this.player, a = this.ai;
+      this.roundWinner = p.hp === a.hp ? 'draw' : p.hp > a.hp ? 'player' : 'ai';
+      this.roundReason = p.hp === 0 || a.hp === 0 ? 'knockout' : 'time';
+      if (this.roundWinner !== 'draw') this[this.roundWinner].wins++;
+      this.winner = p.wins >= 2 ? 'player' : a.wins >= 2 ? 'ai' : null;
+      this.phase = 'roundEnd'; this.phaseTime = 2.7;
+      p.attack = null; a.attack = null; p.block = false; a.block = false;
+      this.events.push({ type: 'round', winner: this.roundWinner });
+    }
+    step(dt, input = {}) {
+      if (!Number.isFinite(dt) || dt <= 0 || this.paused) return;
+      dt = Math.min(dt, .05);
+      if (this.phase === 'countdown' || this.phase === 'roundEnd') {
+        this.phaseTime -= dt;
+        if (this.phaseTime <= 0) {
+          if (this.phase === 'countdown') { this.phase = 'fight'; this.events.push({ type: 'fight' }); }
+          else if (this.winner) { this.phase = 'matchEnd'; this.events.push({ type: 'match', winner: this.winner }); }
+          else this.newRound();
+        }
+        return;
+      }
+      if (this.phase !== 'fight') return;
+      this.time = Math.max(0, this.time - dt);
+      const ai = this.aiInput(dt);
+      this.updateFighter(this.player, this.ai, dt, input);
+      this.updateFighter(this.ai, this.player, dt, ai);
+      const d = distance(this.player, this.ai);
+      if (d < .88) {
+        const nx = d > .001 ? (this.ai.x - this.player.x) / d : 1;
+        const nz = d > .001 ? (this.ai.z - this.player.z) / d : 0;
+        const push = (.88 - d) / 2;
+        this.player.x = clamp(this.player.x - nx * push, -4.1, 4.1); this.ai.x = clamp(this.ai.x + nx * push, -4.1, 4.1);
+        this.player.z = clamp(this.player.z - nz * push, -3.1, 3.1); this.ai.z = clamp(this.ai.z + nz * push, -3.1, 3.1);
+      }
+      this.resolveAttack(this.player, this.ai); this.resolveAttack(this.ai, this.player);
+      if (!this.player.hp || !this.ai.hp || !this.time) this.finishRound();
+    }
+    drainEvents() { const events = this.events; this.events = []; return events; }
+    summary() {
+      return { phase: this.phase, paused: this.paused, round: this.round, seconds: Math.ceil(this.time),
+        player: { health: this.player.hp, energy: Math.round(this.player.energy), roundsWon: this.player.wins },
+        opponent: { health: this.ai.hp, energy: Math.round(this.ai.energy), roundsWon: this.ai.wins }, winner: this.winner };
+    }
+  }
+  return { Match, ATTACKS, clamp, distance };
+});
+
+</script>
+<script>
+/* Small, self-contained WebGL renderer. All models are procedural 3D geometry. */
+(function(root) {
+  'use strict';
+  const identity = () => new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
+  function mul(a,b) { const r=new Float32Array(16); for(let c=0;c<4;c++)for(let i=0;i<4;i++)for(let k=0;k<4;k++)r[c*4+i]+=a[k*4+i]*b[c*4+k]; return r; }
+  function transform(p,r,s) {
+    const [x,y,z]=r,cx=Math.cos(x),sx=Math.sin(x),cy=Math.cos(y),sy=Math.sin(y),cz=Math.cos(z),sz=Math.sin(z);
+    const ry=new Float32Array([cy,0,-sy,0,0,1,0,0,sy,0,cy,0,0,0,0,1]);
+    const rx=new Float32Array([1,0,0,0,0,cx,sx,0,0,-sx,cx,0,0,0,0,1]);
+    const rz=new Float32Array([cz,sz,0,0,-sz,cz,0,0,0,0,1,0,0,0,0,1]);
+    const m=mul(mul(ry,rx),rz);for(let i=0;i<3;i++){m[i]*=s[0];m[4+i]*=s[1];m[8+i]*=s[2];}m[12]=p[0];m[13]=p[1];m[14]=p[2];return m;
+  }
+  function normalMatrix(m) {
+    const a=m[0],b=m[4],c=m[8],d=m[1],e=m[5],f=m[9],g=m[2],h=m[6],i=m[10];
+    const A=e*i-f*h,B=f*g-d*i,C=d*h-e*g,D=c*h-b*i,E=a*i-c*g,F=b*g-a*h,G=b*f-c*e,H=c*d-a*f,I=a*e-b*d;
+    const det=a*A+b*B+c*C || 1;
+    return new Float32Array([A,D,G,B,E,H,C,F,I].map(v=>v/det));
+  }
+  const norm = v=>{const n=Math.hypot(...v)||1;return v.map(x=>x/n);};
+  const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+  const dot=(a,b)=>a.reduce((s,x,i)=>s+x*b[i],0);
+  function lookAt(eye,target){const z=norm(eye.map((v,i)=>v-target[i])),x=norm(cross([0,1,0],z)),y=cross(z,x);return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,eye),-dot(y,eye),-dot(z,eye),1]);}
+  function perspective(aspect,fov=.76){const t=1/Math.tan(fov/2),n=.1,f=140;return new Float32Array([t/aspect,0,0,0,0,t,0,0,0,0,(f+n)/(n-f),-1,0,0,2*f*n/(n-f),0]);}
+  function colour(hex){return [parseInt(hex.slice(1,3),16)/255,parseInt(hex.slice(3,5),16)/255,parseInt(hex.slice(5,7),16)/255];}
+  class Node {
+    constructor(shape=null,col='#ffffff',scale=[1,1,1],pos=[0,0,0]){this.shape=shape;this.col=colour(col);this.scale=scale;this.pos=pos;this.rot=[0,0,0];this.children=[];this.visible=true;this.glow=0;}
+    add(n){this.children.push(n);return n;}
+  }
+  const vertex=`attribute vec3 aPosition;attribute vec3 aNormal;uniform mat4 uModel;uniform mat4 uVP;uniform mat3 uNormal;varying vec3 vNormal;varying vec3 vWorld;void main(){vec4 p=uModel*vec4(aPosition,1.0);vWorld=p.xyz;vNormal=normalize(uNormal*aNormal);gl_Position=uVP*p;}`;
+  const fragment=`precision mediump float;varying vec3 vNormal;varying vec3 vWorld;uniform vec3 uColour;uniform vec3 uEye;uniform float uGlow;void main(){vec3 n=normalize(vNormal);float sun=max(0.0,dot(n,normalize(vec3(-3.0,7.0,4.0))));float rim=max(0.0,dot(n,normalize(vec3(3.0,2.0,-4.0))));vec3 lit=uColour*(0.44+0.57*sun)+vec3(0.055,0.10,0.13)*rim;lit=mix(lit,uColour*1.15,uGlow);float fog=smoothstep(17.0,56.0,distance(vWorld,uEye));gl_FragColor=vec4(mix(lit,vec3(0.065,0.112,0.155),fog),1.0);}`;
+  function boxGeometry(){const p=[],n=[];const faces=[[[1,0,0],[[.5,-.5,-.5],[.5,.5,-.5],[.5,.5,.5],[.5,-.5,.5]]],[[-1,0,0],[[-.5,-.5,.5],[-.5,.5,.5],[-.5,.5,-.5],[-.5,-.5,-.5]]],[[0,1,0],[[-.5,.5,-.5],[-.5,.5,.5],[.5,.5,.5],[.5,.5,-.5]]],[[0,-1,0],[[-.5,-.5,.5],[-.5,-.5,-.5],[.5,-.5,-.5],[.5,-.5,.5]]],[[0,0,1],[[.5,-.5,.5],[.5,.5,.5],[-.5,.5,.5],[-.5,-.5,.5]]],[[0,0,-1],[[-.5,-.5,-.5],[-.5,.5,-.5],[.5,.5,-.5],[.5,-.5,-.5]]]];for(const [normal,verts] of faces)for(const i of [0,1,2,0,2,3]){p.push(...verts[i]);n.push(...normal);}return{p,n};}
+  function sphereGeometry(){const p=[],n=[];const v=(a,b)=>[Math.sin(a)*Math.cos(b),Math.cos(a),Math.sin(a)*Math.sin(b)];for(let j=0;j<8;j++)for(let k=0;k<12;k++){const a=j*Math.PI/8,b=(j+1)*Math.PI/8,c=k*Math.PI/6,d=(k+1)*Math.PI/6;const q=[v(a,c),v(b,c),v(b,d),v(a,d)];for(const i of [0,1,2,0,2,3]){p.push(...q[i]);n.push(...q[i]);}}return{p,n};}
+  function cylinderGeometry(top=1){const p=[],n=[];for(let i=0;i<20;i++){const a=i*Math.PI/10,b=(i+1)*Math.PI/10,c=(a+b)/2;const q=[[Math.cos(a),-.5,Math.sin(a)],[Math.cos(a)*top,.5,Math.sin(a)*top],[Math.cos(b)*top,.5,Math.sin(b)*top],[Math.cos(b),-.5,Math.sin(b)]];for(const t of [0,1,2,0,2,3]){p.push(...q[t]);n.push(...norm([Math.cos(c),1-top,Math.sin(c)]));}for(const [y,ids]of[[.5,[1,2]],[-.5,[3,0]]]){p.push(0,y,0,...q[ids[0]],...q[ids[1]]);for(let k=0;k<3;k++)n.push(0,Math.sign(y),0);}}return{p,n};}
+  function ringGeometry(){const p=[],n=[];for(let j=0;j<40;j++)for(let k=0;k<6;k++){const q=[];for(const[a,b]of[[j,k],[j+1,k],[j+1,k+1],[j,k+1]]){const t=a*Math.PI/20,s=b*Math.PI/3;const no=[Math.cos(t)*Math.cos(s),Math.sin(s),Math.sin(t)*Math.cos(s)];q.push({p:[Math.cos(t)*(1+.025*Math.cos(s)),.025*Math.sin(s),Math.sin(t)*(1+.025*Math.cos(s))],n:no});}for(const i of[0,1,2,0,2,3]){p.push(...q[i].p);n.push(...q[i].n);}}return{p,n};}
+  class Renderer {
+    constructor(canvas){
+      this.canvas=canvas;const gl=this.gl=canvas.getContext('webgl',{alpha:false,antialias:true,powerPreference:'high-performance'});if(!gl)throw Error('WebGL is unavailable');
+      const shader=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;};
+      const pr=this.program=gl.createProgram();gl.attachShader(pr,shader(gl.VERTEX_SHADER,vertex));gl.attachShader(pr,shader(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(pr));gl.useProgram(pr);
+      this.loc={};for(const v of['uModel','uVP','uNormal','uColour','uEye','uGlow'])this.loc[v]=gl.getUniformLocation(pr,v);this.ap=gl.getAttribLocation(pr,'aPosition');this.an=gl.getAttribLocation(pr,'aNormal');gl.enableVertexAttribArray(this.ap);gl.enableVertexAttribArray(this.an);
+      this.meshes={};for(const[name,data]of Object.entries({box:boxGeometry(),sphere:sphereGeometry(),cylinder:cylinderGeometry(),cone:cylinderGeometry(0),ring:ringGeometry()})){const buf=a=>{const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(a),gl.STATIC_DRAW);return b;};this.meshes[name]={p:buf(data.p),n:buf(data.n),count:data.p.length/3};}
+      gl.enable(gl.DEPTH_TEST);gl.clearColor(.065,.112,.155,1);this.eye=[0,6.2,12.5];this.target=[0,1,0];this.width=1;this.height=1;
+    }
+    resize(){const dpr=Math.min(window.devicePixelRatio||1,1.5),w=this.canvas.clientWidth,h=this.canvas.clientHeight;this.width=w;this.height=h;if(this.canvas.width!==Math.round(w*dpr)||this.canvas.height!==Math.round(h*dpr)){this.canvas.width=Math.round(w*dpr);this.canvas.height=Math.round(h*dpr);this.gl.viewport(0,0,this.canvas.width,this.canvas.height);}}
+    render(root){const g=this.gl;this.resize();g.clear(g.COLOR_BUFFER_BIT|g.DEPTH_BUFFER_BIT);g.useProgram(this.program);g.uniformMatrix4fv(this.loc.uVP,false,mul(perspective(this.width/this.height),lookAt(this.eye,this.target)));g.uniform3fv(this.loc.uEye,this.eye);
+      const draw=(node,parent)=>{if(!node.visible)return;const world=mul(parent,transform(node.pos,node.rot,node.scale));if(node.shape){const m=this.meshes[node.shape];g.bindBuffer(g.ARRAY_BUFFER,m.p);g.vertexAttribPointer(this.ap,3,g.FLOAT,false,0,0);g.bindBuffer(g.ARRAY_BUFFER,m.n);g.vertexAttribPointer(this.an,3,g.FLOAT,false,0,0);g.uniformMatrix4fv(this.loc.uModel,false,world);g.uniformMatrix3fv(this.loc.uNormal,false,normalMatrix(world));g.uniform3fv(this.loc.uColour,node.col);g.uniform1f(this.loc.uGlow,node.glow);g.drawArrays(g.TRIANGLES,0,m.count);}for(const child of node.children)draw(child,world);};draw(root,identity());
+    }
+  }
+  function mesh(parent,shape,col,size,pos,rot){const n=parent.add(new Node(shape,col,size,pos));if(rot)n.rot=rot;return n;}
+  function makeArena(){const root=new Node();mesh(root,'box','#182b35',[200,.2,200],[0,-.5,0]);mesh(root,'box','#33494f',[11.3,.3,9.1],[0,-.26,0]);mesh(root,'box','#697b79',[10.5,.22,8.4],[0,-.1,0]);
+    for(let x=-4;x<=4;x++)for(let z=-3;z<=3;z++)mesh(root,'box',(x+z)%2===0?'#426766':'#48716d',[.99,.035,.99],[x,.025,z]);
+    for(const x of[-4.68,4.68])mesh(root,'box','#d7b478',[.09,.042,7.8],[x,.03,0]);for(const z of[-3.83,3.83])mesh(root,'box','#d7b478',[9.4,.042,.09],[0,.03,z]);
+    mesh(root,'ring','#dfbc82',[2.65,1,2.65],[0,.051,0]);mesh(root,'ring','#94ada0',[2.50,1,2.50],[0,.053,0]);mesh(root,'box','#d2b47f',[.07,.035,1.6],[0,.05,0]);
+    for(const x of[-1.8,1.8])mesh(root,'box','#c9b994',[.8,.035,.09],[x,.05,0]);
+    // Timber gate and raised steps give the ring depth without external assets.
+    for(const x of[-3.5,3.5]){mesh(root,'box','#5d3d34',[.40,4.9,.5],[x,2,-5.2]);mesh(root,'box','#b79561',[.46,.10,.56],[x,3.98,-5.2]);mesh(root,'box','#394b51',[.8,.6,.9],[x,-.06,-5.2]);}
+    mesh(root,'box','#794c39',[8.4,.42,.75],[0,4.1,-5.2]);mesh(root,'box','#24343d',[9.2,.2,1.05],[0,4.43,-5.2]);mesh(root,'box','#4a3430',[7.6,.23,.45],[0,3.45,-5.2]);mesh(root,'box','#c6a565',[.075,.56,.5],[0,3.75,-5.2]);
+    for(const x of[-6.3,6.3])for(const z of[-4.1,3.5]){mesh(root,'box','#263d45',[.9,.24,.9],[x,-.14,z]);mesh(root,'box','#384f52',[.30,1.7,.30],[x,.65,z]);mesh(root,'box','#243840',[.86,.18,.86],[x,1.53,z]);const lamp=mesh(root,'box','#ffc977',[.62,.60,.62],[x,1.87,z]);lamp.glow=.9;mesh(root,'cone','#31434a',[.71,.44,.71],[x,2.33,z]);for(const s of[-1,1])mesh(root,'box','#263943',[.065,.64,.67],[x+s*.27,1.85,z]);}
+    for(let i=0;i<15;i++){const x=(i<8?-1:1)*(8+(i%4)*1.6),z=-9+(i%5)*3.4;const h=3.8+(i%3)*1.2;mesh(root,'cylinder','#243539',[.18,h,.18],[x,h/2-.4,z]);for(let k=0;k<3;k++)mesh(root,'cone',k%2?'#1e4747':'#234f4c',[1.4-k*.18,h*.50,1.4-k*.18],[x,h*.48+k*.75,z]);}
+    const moon=mesh(root,'sphere','#d6d7b2',[1.4,1.4,1.4],[8,10,-24]);moon.glow=1;
+    for(const x of[-5.3,5.3])for(let z=-5;z<5;z+=1.4){mesh(root,'box','#2c4147',[.17,1,.17],[x,.23,z]);mesh(root,'box','#526264',[.10,.10,1.6],[x,.65,z+.65]);}
+    return root;
+  }
+  function makeFighter(parent,opponent=false){
+    const col=opponent?'#db755f':'#57cbb9',cloth=opponent?'#b1b2a3':'#dddcc9',trousers=opponent?'#293d48':'#b7c9bc',skin=opponent?'#c9916c':'#b98160';
+    const group=parent.add(new Node()),shadow=mesh(parent,'cylinder','#203c3d',[.52,.014,.36],[0,.065,0]);shadow.glow=.4;
+    const marker=mesh(parent,'ring',col,[.63,1,.63],[0,.077,0]);marker.glow=.8;
+    const hips=group.add(new Node(null));hips.pos=[0,1,0];mesh(hips,'box',trousers,[.52,.27,.34],[0,0,0]);
+    const torso=hips.add(new Node());mesh(torso,'box',cloth,[.64,.60,.39],[0,.39,0]);
+    mesh(torso,'box',col,[.68,.105,.42],[0,.11,0]);mesh(torso,'box',col,[.095,.32,.06],[-.12,-.065,.25],[0,0,-.2]);mesh(torso,'box',col,[.10,.34,.06],[.04,-.08,.25],[0,0,.2]);
+    mesh(torso,'box','#a7b4ae',[.09,.44,.025],[-.06,.45,.21],[0,0,-.40]);mesh(torso,'box','#a7b4ae',[.075,.39,.028],[.06,.48,.23],[0,0,.4]);
+    mesh(torso,'cylinder',skin,[.12,.14,.12],[0,.78,0]);const head=mesh(torso,'sphere',skin,[.235,.27,.22],[0,1,0]);mesh(torso,'sphere','#222b2e',[.24,.13,.22],[0,1.17,-.02]);mesh(torso,'box',col,[.43,.06,.10],[0,1.13,.17]);mesh(torso,'box','#26373a',[.085,.035,.06],[-.085,1.03,.21]);mesh(torso,'box','#26373a',[.085,.035,.06],[.085,1.03,.21]);
+    const arms=[];for(const side of[-1,1]){const arm=torso.add(new Node());arm.pos=[side*.40,.62,0];mesh(arm,'cylinder',cloth,[.145,.39,.145],[0,-.195,0]);const fore=arm.add(new Node());fore.pos=[0,-.38,0];mesh(fore,'cylinder',skin,[.105,.37,.105],[0,-.185,0]);mesh(fore,'sphere',col,[.14,.145,.14],[0,-.41,0]);arms.push({arm,fore});}
+    const legs=[];for(const side of[-1,1]){const leg=hips.add(new Node());leg.pos=[side*.18,-.10,0];mesh(leg,'cylinder',trousers,[.17,.42,.16],[0,-.21,0]);const shin=leg.add(new Node());shin.pos=[0,-.42,0];mesh(shin,'cylinder',trousers,[.125,.38,.125],[0,-.19,0]);mesh(shin,'box','#293a40',[.22,.15,.36],[0,-.43,.08]);legs.push({leg,shin});}
+    return{group,hips,torso,head,arms,legs,shadow,marker,col,baseHead:head.col.slice()};
+  }
+  function pose(v,f,time){
+    v.group.pos=[f.x,0,f.z];v.group.rot=[0,f.attack?f.attack.yaw:f.yaw,0];v.shadow.pos=[f.x,.065,f.z];v.marker.pos=[f.x,.077,f.z];
+    const bob=Math.sin(time*3)*.018,walk=f.moving>.1?Math.sin(f.walk)*Math.min(f.moving/3,1):0;
+    v.hips.pos=[0,1+bob+(f.dash>0?-.15:0),0];v.hips.rot=[0,0,0];v.torso.rot=[f.block?-.05:0,0,0];v.head.col=f.flash>0?[1,.9,.75]:v.baseHead.slice();
+    v.arms.forEach(({arm,fore},i)=>{arm.rot=[-.35+(i?-.06:.06),0,i?.12:-.12];fore.rot=[-1.5,0,0];});
+    v.legs.forEach(({leg,shin},i)=>{leg.rot=[(i?-.18:.12)+walk*(i?-.40:.40),0,i?-.06:.06];shin.rot=[.13+Math.max(0,walk*(i?-1:1))*.45,0,0];});
+    if(f.block){v.arms.forEach(({arm,fore},i)=>{arm.rot=[-.62,0,i?-.20:.20];fore.rot=[-1.8,0,0];});}
+    if(f.attack){const a=f.attack,spec=window.IronDojoCore.ATTACKS[a.type];const peak=spec.startup+.045;const k=a.t<peak?Math.sin(Math.min(1,a.t/peak)*Math.PI/2):Math.max(0,1-(a.t-peak)/(spec.duration-peak));
+      if(a.type==='punch'){const chosen=v.arms[a.hand];chosen.arm.rot[0]=-.35-k*1.28;chosen.fore.rot[0]=-1.5*(1-k);v.torso.rot[1]=(a.hand?1:-1)*k*.25;}
+      else{v.legs[1].leg.rot[0]=-.18-k*1.65;v.legs[1].shin.rot[0]=.13+Math.sin(Math.min(1,a.t/spec.startup)*Math.PI)*.9;v.torso.rot[0]=k*.2;v.arms[0].arm.rot[2]=-.12-k*.50;}
+    }
+    if(f.stun>0){v.torso.rot[0]=.22;v.arms.forEach(({arm})=>arm.rot[0]=-.1);}
+    if(f.hp<=0){v.group.rot[2]=Math.min(Math.PI/2,(100-f.hp)*.018);v.group.pos[1]=.12;v.marker.visible=false;}else v.marker.visible=true;
+  }
+  root.Dojo3D={Renderer,Node,mesh,makeArena,makeFighter,pose,math:{identity,mul,transform,normalMatrix,perspective,lookAt}};
+})(typeof window!=='undefined'?window:module.exports);
+
+</script>
+<script>
+/* UI, input, audio and animation for Iron Dojo. */
+(() => {
+  'use strict';
+  const $=id=>document.getElementById(id);
+  let renderer,match,scene,playerModel,aiModel;
+  try{if(!window.Dojo3D||!window.IronDojoCore)throw Error('A game file is missing');renderer=new Dojo3D.Renderer($('arena'));match=new IronDojoCore.Match();scene=Dojo3D.makeArena();playerModel=Dojo3D.makeFighter(scene);aiModel=Dojo3D.makeFighter(scene,true);}catch(error){$('start-screen').hidden=true;$('error-screen').hidden=false;console.error(error);return;}
+  const touch=matchMedia('(pointer: coarse)').matches||navigator.maxTouchPoints>0;
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const keys=new Set(),pointers=new Map();let stick={x:0,z:0},stickPointer=null,queued=null,simTime=0,last=0,accumulator=0,shownPhase='',eventUntil=0,shake=0;
+  let soundEnabled=false,audioContext=null,particlePool=[],lastHud='';
+  const cssColours={player:[.34,.79,.73],ai:[.94,.53,.40],block:[.89,.76,.48]};
+  for(let i=0;i<30;i++){const n=Dojo3D.mesh(scene,'box','#f5d18d',[.06,.06,.06],[0,0,0]);n.visible=false;n.glow=1;particlePool.push({n,life:0,v:[0,0,0]});}
+  function clearInput(){keys.clear();pointers.clear();stick={x:0,z:0};stickPointer=null;queued=null;$('joystick-knob').style.transform='translate(0px,0px)';document.querySelectorAll('.fight-action').forEach(b=>b.classList.remove('active'));}
+  function audio(){if(!soundEnabled)return null;try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;if(!audioContext)audioContext=new C();if(audioContext.state==='suspended')audioContext.resume().catch(()=>{});return audioContext;}catch{return null;}}
+  function tone(kind){const ctx=audio();if(!ctx)return;try{const o=ctx.createOscillator(),g=ctx.createGain();const t=ctx.currentTime;const f=kind==='block'?420:kind==='hit'?150:kind==='fight'?620:kind==='round'?780:220;o.type=kind==='hit'?'triangle':'sine';o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(Math.max(40,f*.4),t+.12);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(kind==='swing'?.018:.06,t+.006);g.gain.exponentialRampToValueAtTime(.0001,t+.17);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+.18);}catch{}}
+  function showError(copy){match.pause();clearInput();$('error-copy').textContent=copy;$('error-screen').hidden=false;$('start-screen').hidden=true;}
+  $('arena').addEventListener('webglcontextlost',event=>{event.preventDefault();showError('The 3D graphics connection was interrupted. Tap Try again to restart the game.');});
+  function startMatch(){clearInput();audio();match.start();shownPhase='';$('start-screen').hidden=true;$('pause-screen').hidden=true;$('result-screen').hidden=true;$('hud').hidden=false;$('pause').disabled=false;$('share-status').textContent='';$('arena').focus({preventScroll:true});syncUI();}
+  function pause(){match.pause();if(!match.paused)return;clearInput();$('pause-screen').hidden=false;$('touch-controls').hidden=true;$('controls-hint').hidden=true;$('pause').textContent='Resume';$('resume').focus({preventScroll:true});}
+  function resume(){match.resume();clearInput();$('pause-screen').hidden=true;$('pause').textContent='Pause';$('arena').focus({preventScroll:true});syncUI();}
+  $('start').disabled=false;$('start').textContent='Enter the dojo';$('start').addEventListener('click',startMatch);$('restart').addEventListener('click',startMatch);$('rematch').addEventListener('click',startMatch);$('resume').addEventListener('click',resume);$('pause').addEventListener('click',()=>match.paused?resume():pause());
+  $('sound').addEventListener('click',()=>{soundEnabled=!soundEnabled;$('sound').setAttribute('aria-pressed',String(soundEnabled));$('sound').textContent=soundEnabled?'Sound on':'Sound off';if(soundEnabled)tone('fight');});
+  $('share').addEventListener('click',async()=>{if(!/^https?:$/.test(location.protocol)){$('share-status').textContent='Upload the game to GitHub Pages first, then copy its web address.';return;}const url=location.href.split('#')[0];try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(url);$('share-status').textContent='Game link copied. Send it to a friend!';}else throw Error();}catch{$('share-status').textContent='Copy this address: '+url;}});
+  const gameplayKeys=['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyJ','KeyK','KeyL','Space'];
+  document.addEventListener('keydown',e=>{
+    const modal=!$('pause-screen').hidden?$('pause-screen'):!$('result-screen').hidden?$('result-screen'):null;
+    if(modal&&e.key==='Tab'){const list=[...modal.querySelectorAll('button:not([disabled]),a[href]')];const first=list[0],end=list[list.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();end.focus();}else if(!e.shiftKey&&document.activeElement===end){e.preventDefault();first.focus();}return;}
+    if((e.code==='KeyP'||e.code==='Escape')&&!e.repeat){if(match.paused)resume();else pause();return;}
+    if(match.phase!=='fight'||match.paused)return;
+    if(e.target.closest('button,a,input,select,textarea'))return;
+    if(gameplayKeys.includes(e.code)){e.preventDefault();keys.add(e.code);}
+  });
+  document.addEventListener('keyup',e=>keys.delete(e.code));
+  window.addEventListener('blur',()=>{clearInput();pause();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();pause();}});
+  const joystick=$('joystick');
+  function moveStick(e){if(e.pointerId!==stickPointer)return;const r=joystick.getBoundingClientRect(),limit=r.width*.32;let dx=e.clientX-r.left-r.width/2,dz=e.clientY-r.top-r.height/2;const d=Math.hypot(dx,dz);if(d>limit){dx*=limit/d;dz*=limit/d;}stick={x:dx/limit,z:dz/limit};$('joystick-knob').style.transform=`translate(${dx}px,${dz}px)`;}
+  joystick.addEventListener('pointerdown',e=>{e.preventDefault();if(stickPointer!==null)return;stickPointer=e.pointerId;joystick.setPointerCapture(e.pointerId);moveStick(e);});
+  joystick.addEventListener('pointermove',moveStick);
+  function stopStick(e){if(e.pointerId!==stickPointer)return;stickPointer=null;stick={x:0,z:0};$('joystick-knob').style.transform='translate(0px,0px)';}
+  for(const event of['pointerup','pointercancel','lostpointercapture'])joystick.addEventListener(event,stopStick);
+  document.querySelectorAll('[data-action]').forEach(button=>{
+    button.addEventListener('pointerdown',e=>{e.preventDefault();audio();pointers.set(e.pointerId,button.dataset.action);button.setPointerCapture(e.pointerId);button.classList.add('active');if(button.dataset.action!=='block')queued=button.dataset.action;});
+    const stop=e=>{pointers.delete(e.pointerId);if(![...pointers.values()].includes(button.dataset.action))button.classList.remove('active');};
+    for(const ev of['pointerup','pointercancel','lostpointercapture'])button.addEventListener(ev,stop);
+  });
+  function input(){const has=(...v)=>v.some(k=>keys.has(k)),touchActions=[...pointers.values()];const action=queued||(has('KeyL')?'dash':has('KeyK')?'kick':has('KeyJ')?'punch':touchActions.includes('kick')?'kick':touchActions.includes('punch')?'punch':null);queued=null;return{x:stick.x+(has('KeyD','ArrowRight')?1:0)-(has('KeyA','ArrowLeft')?1:0),z:stick.z+(has('KeyS','ArrowDown')?1:0)-(has('KeyW','ArrowUp')?1:0),block:has('Space')||touchActions.includes('block'),action};}
+  function particles(event){let count=0;for(const p of particlePool){if(p.life>0)continue;p.life=.28+Math.random()*.18;p.n.visible=true;p.n.pos=[event.x,event.y,event.z];p.n.col=event.blocked?cssColours.block:cssColours[event.who];p.v=[(Math.random()-.5)*4,1+Math.random()*3,(Math.random()-.5)*4];if(++count===8)break;}}
+  function processEvents(){for(const e of match.drainEvents()){
+    if(e.type==='hit'){tone(e.blocked?'block':'hit');particles(e);shake=!reducedMotion&&!e.blocked?.09:0;eventUntil=simTime+.62;$('event-label').textContent=e.guardBreak?'GUARD BROKEN':e.blocked?'BLOCKED':e.who==='player'?`CLEAN HIT · ${e.damage}`:'HIT · WATCH THEIR STANCE';}
+    else if(e.type==='evade'){eventUntil=simTime+.6;$('event-label').textContent='DODGED';}
+    else if(['swing','fight','round'].includes(e.type))tone(e.type);
+  }}
+  function syncUI(){const p=match.player,a=match.ai;
+    $('player-health').style.transform=`scaleX(${p.hp/100})`;$('ai-health').style.transform=`scaleX(${a.hp/100})`;$('player-hp').textContent=p.hp+' HP';$('ai-hp').textContent=a.hp+' HP';$('player-energy').value=p.energy;$('ai-energy').value=a.energy;
+    $('timer').textContent=String(Math.ceil(match.time)).padStart(2,'0');$('round-label').textContent='ROUND '+match.round;$('ai-intent').textContent=a.intent;$('player-wins').textContent=['●','●'].map((v,i)=>p.wins>i?v:'○').join(' ');$('ai-wins').textContent=['●','●'].map((v,i)=>a.wins>i?v:'○').join(' ');
+    const play=match.phase==='fight'&&!match.paused;$('touch-controls').hidden=!play||!touch;$('controls-hint').hidden=!play||touch;
+    let announcement=match.phase==='countdown'?String(Math.ceil(Math.max(0,match.phaseTime))):match.phase==='roundEnd'?match.roundWinner==='draw'?'DRAW':match.roundWinner==='player'?'ROUND WON':'ROUND LOST':'';
+    if($('announcer').textContent!==announcement)$('announcer').textContent=announcement;
+    if(shownPhase!==match.phase){shownPhase=match.phase;clearInput();if(match.phase==='fight'){eventUntil=simTime+1.4;$('event-label').textContent='FIGHT · YOU ARE TEAL';}
+      if(match.phase==='matchEnd'){$('result-screen').hidden=false;$('pause').disabled=true;$('result-title').textContent=match.winner==='player'?'Victory.':'Keep training.';$('result-eyebrow').textContent=match.winner==='player'?'THE DOJO IS YOURS':'A WORTHY OPPONENT';$('result-copy').textContent=`Final score: ${p.wins} – ${a.wins}. `+(match.winner==='player'?'Well-timed strikes win the fight. Ready for a rematch?':'Close the distance to punch. Block incoming attacks and counter with a kick.');$('rematch').focus({preventScroll:true});}
+    }
+    const state=JSON.stringify(match.summary());if(state!==lastHud){lastHud=state;$('arena').setAttribute('aria-label',`3D martial arts. You have ${p.hp} health, your opponent has ${a.hp}. Round ${match.round}.`);}
+  }
+  function animate(now){if($('error-screen').hidden===false)return;const dt=Math.min(.10,last?(now-last)/1000:0);last=now;
+    try{
+      if(!match.paused){simTime+=dt;accumulator+=dt;while(accumulator>=1/60){match.step(1/60,input());accumulator-=1/60;}processEvents();}
+      Dojo3D.pose(playerModel,match.player,simTime);Dojo3D.pose(aiModel,match.ai,simTime+.5);
+      for(const p of particlePool)if(p.life>0&&!match.paused){p.life-=dt;p.n.visible=p.life>0;p.v[1]-=dt*9;p.n.pos=p.n.pos.map((v,i)=>v+p.v[i]*dt);p.n.rot[0]+=dt*7;p.n.rot[2]+=dt*5;}
+      if(simTime>eventUntil)$('event-label').textContent='';
+      const aspect=$('arena').clientWidth/$('arena').clientHeight;
+      const midX=(match.player.x+match.ai.x)*.5,midZ=(match.player.z+match.ai.z)*.5;
+      const width=Math.max(6.4,Math.abs(match.player.x-match.ai.x)+4.7);
+      const distance=Math.max(12.5,width/(Math.tan(.38)*Math.min(aspect,1.8)*2));
+      const menu=match.phase==='menu';let target=menu?[-1.8,1,0]:[midX*.5,aspect<.9?0.4:0.8,midZ*.5];let eye=menu?[7,5.5,13]:[target[0]+.8,5.6+(distance-12.5)*.24,target[2]+distance];
+      if(menu&&aspect<.85){eye=[4,7,21];target=[-.5,.4,0];}
+      shake=Math.max(0,shake-dt*.5);if(shake>0){eye[0]+=(Math.random()-.5)*shake;eye[1]+=(Math.random()-.5)*shake;}
+      renderer.eye=renderer.eye.map((v,i)=>v+(eye[i]-v)*Math.min(1,dt*4));renderer.target=renderer.target.map((v,i)=>v+(target[i]-v)*Math.min(1,dt*4));renderer.render(scene);syncUI();
+      requestAnimationFrame(animate);
+    }catch(error){console.error(error);showError('The game could not continue. Tap Try again. If it keeps happening, try another browser with 3D graphics enabled.');}
+  }
+  // Feature-detected agent controls use exactly the same actions as the buttons.
+  if(document.modelContext?.registerTool){const life=new AbortController();window.addEventListener('pagehide',()=>life.abort(),{once:true});
+    const register=(name,description,readOnlyHint,execute)=>{try{Promise.resolve(document.modelContext.registerTool({name,description,inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint,untrustedContentHint:false},execute(input){if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).length)throw Error('Expected an empty object');return execute();}},{signal:life.signal})).catch(()=>{});}catch{}};
+    register('read_dojo_match','Read the current health, energy, round and match state.',true,()=>match.summary());
+    register('start_dojo_match','Start a new single-player match, replacing the current match.',false,()=>{startMatch();return match.summary();});
+    register('pause_dojo_match','Pause the current match.',false,()=>{pause();return match.summary();});
+    register('resume_dojo_match','Resume a paused match.',false,()=>{resume();return match.summary();});
+  }
+  requestAnimationFrame(animate);
+})();
+
+</script>
+</body>
+</html>

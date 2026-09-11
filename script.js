@@ -217,11 +217,12 @@
     card.append(meta, heading);
     if (project.role) card.append(element("p", "project-role", project.role));
     if (project.description) card.append(element("p", "project-description", project.description));
+    const playable = webUrl(project.demoUrl);
+    if (playable) card.append(makeLink(playable, "text-link", "Play game ↗"));
     const notes = Array.isArray(project.details) ? project.details.filter((item) => typeof item === "string" && item.trim()) : [];
     const destinations = [
       ["View project", webUrl(project.url)],
       ["Watch video", webUrl(project.videoUrl)],
-      ["Play game", webUrl(project.demoUrl)],
       ["View source", webUrl(project.sourceUrl)],
       ["Open on Google Drive", webUrl(project.driveUrl)]
     ].filter(([, url]) => url);

@@ -43,11 +43,29 @@ window.PORTFOLIO_DATA = {
     },
     {
       "id": "games",
-      "label": "2D Games"
+      "label": "Games"
     }
   ],
 
   "projects": [
+    {
+      "id": "iron-dojo-ai-game",
+      "title": "Iron Dojo",
+      "collection": "games",
+      "category": "3D Martial Arts",
+      "role": "AI-assisted game project",
+      "tools": "WebGL · JavaScript",
+      "description": "I built this 3D martial-arts browser game with AI assistance. Step into the dojo, fight a sparring AI, and try it yourself on a computer or phone.",
+      "demoUrl": "./iron-dojo.html",
+      "featured": true,
+      "details": [
+        "Created with AI assistance for the game code, procedural 3D characters, arena and interface.",
+        "Single-player sparring with punches, kicks, blocking, dodging and energy management.",
+        "First to win two rounds takes the match. Includes keyboard and multi-touch controls.",
+        "Runs directly in a WebGL-capable browser with no game installation or account required.",
+        "An AI-assisted prototype for my portfolio, not an online multiplayer game."
+      ]
+    },
     {
       "image": "./assets/work/kappiri-2025.jpg",
       "imageAlt": "Kappiri film poster",
