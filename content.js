@@ -51,7 +51,7 @@ window.PORTFOLIO_DATA = {
     {
       "id": "iron-dojo-ai-game",
       "title": "Iron Dojo",
-      "image": "./iron-dojo-1.png",
+      "image": "./iron-dojo-1.png.png",
       "imageAlt": "Iron Dojo title screen with two fighters in the lantern-lit 3D dojo",
       "imageFit": "contain",
       "images": [
