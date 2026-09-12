@@ -51,6 +51,19 @@ window.PORTFOLIO_DATA = {
     {
       "id": "iron-dojo-ai-game",
       "title": "Iron Dojo",
+      "image": "./iron-dojo-1.png",
+      "imageAlt": "Iron Dojo title screen with two fighters in the lantern-lit 3D dojo",
+      "imageFit": "contain",
+      "images": [
+        {
+          "src": "./iron-dojo-2.png",
+          "alt": "Iron Dojo round start with both fighters, health bars and a 60-second timer"
+        },
+        {
+          "src": "./iron-dojo-3.png",
+          "alt": "Close-range sparring against the AI opponent in Iron Dojo"
+        }
+      ],
       "collection": "games",
       "category": "3D Martial Arts",
       "role": "AI-assisted game project",
